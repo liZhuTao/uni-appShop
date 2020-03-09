@@ -1,0 +1,1 @@
+<view class="data-v-9c66ab3e"><view class="search data-v-9c66ab3e"><view class="search-input data-v-9c66ab3e"><image src="{{$root.m0}}" mode="widthFix" class="_img data-v-9c66ab3e"></image><input type="text" placeholder="请输入文字" disabled class="data-v-9c66ab3e"/></view></view></view>
