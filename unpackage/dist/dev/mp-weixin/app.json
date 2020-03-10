@@ -8,7 +8,7 @@
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "湖工eshop",
+    "navigationBarTitleText": "湖工二手购",
     "navigationBarBackgroundColor": "#FFD300",
     "backgroundColor": "#FFD300"
   },
@@ -44,6 +44,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap10.json"
+  "usingComponents": {}
 }

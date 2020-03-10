@@ -35,7 +35,8 @@
 			clickTabs(index){
 				this.num = index;
 			}
-		}
+		},
+		
 	}
 </script>
 
