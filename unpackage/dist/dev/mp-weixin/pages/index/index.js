@@ -160,19 +160,34 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     return {
       isFixed: false,
       rect: '',
-      menutop: '' };
+      menutop: '',
+      banner: [] };
 
+  },
+  //
+  created: function created() {var _this = this;
+    //请求轮播数据
+    var db = wx.cloud.database(); //指定要操作的数据库
+    var banner = db.collection('banner'); //指定请求的数据集合
+    banner.get().
+    then(function (res) {
+      console.log(res);
+      _this.banner = res.data;
+    }).
+    catch(function (err) {
+      console.log(err);
+    });
   },
   //监听页面滚动
   onPageScroll: function onPageScroll(e) {
     this.rect = e.scrollTop;
   },
-  onLoad: function onLoad() {var _this = this;
+  onLoad: function onLoad() {var _this2 = this;
     var query = wx.createSelectorQuery();
     query.select("#boxFixed").boundingClientRect();
     query.exec(function (res) {
       // console.log(res)
-      _this.menutop = res[0].top;
+      _this2.menutop = res[0].top;
     });
   },
   //计算属性:时刻监听数据变化，数据发生变化，计算属性重新执行

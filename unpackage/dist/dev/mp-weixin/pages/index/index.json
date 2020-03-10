@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "湖工eShop",
+  "navigationBarTitleText": "湖工二手购",
   "usingComponents": {
     "search": "/pages/index/components/search",
     "ticket": "/pages/index/components/ticket",

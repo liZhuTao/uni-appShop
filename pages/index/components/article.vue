@@ -13,7 +13,7 @@
 						<view class="active-label">{{item.label}}</view>
 						<view class="purchase">
 							<text class="active-price">￥{{item.price}}</text>
-							<text class="active-purchase">{{item.buy}}人已购</text>
+							<text class="active-purchase">{{item.buy}}人想买</text>
 						</view>
 					</view>
 				</view>

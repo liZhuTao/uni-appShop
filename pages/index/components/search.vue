@@ -19,7 +19,7 @@
 		>
 			<swiper-item v-for="(item,index) in banner" :key="index">
 				<view class="swiper-item" id="swiper-item">
-					<img :src="item.img" class="img-url" mode="aspectFill">
+					<img :src="item.image" class="img-url" mode="aspectFill">
 				</view>
 			</swiper-item>
 		</swiper>
@@ -29,15 +29,12 @@
 <script>
 	export default{
 		name:'search',
+		props:{
+			banner:Array
+		},
 		data(){
 			return{
-				banner:[
-					{"img":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2076884751,2890821575&fm=26&gp=0.jpg"},
-					{"img":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2852928175,4143309050&fm=26&gp=0.jpg"},
-					{"img":"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2850297137,916412018&fm=26&gp=0.jpg"},
-					{"img":"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3005135712,2657691519&fm=26&gp=0.jpg"},
-					{"img":"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=770826905,4167936486&fm=26&gp=0.jpg"}
-				]
+				
 			}
 		},
 	}

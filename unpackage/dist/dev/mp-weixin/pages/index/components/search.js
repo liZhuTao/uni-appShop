@@ -146,14 +146,11 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var _default =
 {
   name: 'search',
+  props: {
+    banner: Array },
+
   data: function data() {
-    return {
-      banner: [
-      { "img": "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2076884751,2890821575&fm=26&gp=0.jpg" },
-      { "img": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2852928175,4143309050&fm=26&gp=0.jpg" },
-      { "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2850297137,916412018&fm=26&gp=0.jpg" },
-      { "img": "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3005135712,2657691519&fm=26&gp=0.jpg" },
-      { "img": "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=770826905,4167936486&fm=26&gp=0.jpg" }] };
+    return {};
 
 
   } };exports.default = _default;

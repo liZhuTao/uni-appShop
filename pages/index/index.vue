@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<Search></Search>
+		<Search :banner="banner"></Search>
 		<Ticket></Ticket>
 		<Classify></Classify>
 		<Content id="boxFixed" :class="{is_fixed:isFixed}"></Content>
@@ -27,8 +27,23 @@
 			return {
 				isFixed: false,
 				rect:'',
-				menutop:''
+				menutop:'',
+				banner:[]
 			}
+		},
+		//
+		created() {
+			//请求轮播数据
+			const db = wx.cloud.database()        //指定要操作的数据库
+			const banner = db.collection('banner')   //指定请求的数据集合
+			banner.get()
+			.then((res)=>{
+				console.log(res)
+				this.banner = res.data
+			})
+			.catch((err)=>{
+				console.log(err)
+			})
 		},
 		//监听页面滚动
 		onPageScroll(e){
