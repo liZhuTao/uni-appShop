@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "湖工eShop",
   "usingComponents": {
-    "search": "/pages/index/components/search"
+    "search": "/pages/index/components/search",
+    "ticket": "/pages/index/components/ticket",
+    "classify": "/pages/index/components/classify"
   }
 }

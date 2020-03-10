@@ -35,4 +35,11 @@
 	font-size: 30rpx;
 	color: #666666;
 }
+swiper.data-v-9c66ab3e{
+	height: 300rpx;
+}
+.img-url.data-v-9c66ab3e{
+	width: 100%;
+	height: 300rpx !important;
+}
 

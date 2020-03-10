@@ -1,0 +1,1 @@
+<view class="data-v-58b15dc5"><view class="sort data-v-58b15dc5"><block wx:for="{{sortList}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="sort-item data-v-58b15dc5"><image src="{{item.image}}" class="_img data-v-58b15dc5"></image><text class="data-v-58b15dc5">{{item.name}}</text></view></block></view></view>
