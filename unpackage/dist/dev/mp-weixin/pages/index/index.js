@@ -131,7 +131,9 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Search = function Search() {return Promise.all(/*! import() | pages/index/components/search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/search")]).then(__webpack_require__.bind(null, /*! ./components/search */ 41));};var Ticket = function Ticket() {return Promise.all(/*! import() | pages/index/components/ticket */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/ticket")]).then(__webpack_require__.bind(null, /*! ./components/ticket */ 49));};var Classify = function Classify() {return __webpack_require__.e(/*! import() | pages/index/components/classify */ "pages/index/components/classify").then(__webpack_require__.bind(null, /*! ./components/classify */ 61));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/index/components/content */ "pages/index/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 68));};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Search = function Search() {return Promise.all(/*! import() | pages/index/components/search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/search")]).then(__webpack_require__.bind(null, /*! ./components/search */ 41));};var Ticket = function Ticket() {return Promise.all(/*! import() | pages/index/components/ticket */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/ticket")]).then(__webpack_require__.bind(null, /*! ./components/ticket */ 49));};var Classify = function Classify() {return __webpack_require__.e(/*! import() | pages/index/components/classify */ "pages/index/components/classify").then(__webpack_require__.bind(null, /*! ./components/classify */ 61));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/index/components/content */ "pages/index/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 68));};var Article = function Article() {return __webpack_require__.e(/*! import() | pages/index/components/article */ "pages/index/components/article").then(__webpack_require__.bind(null, /*! ./components/article */ 81));};var _default =
+
+
 
 
 
@@ -151,7 +153,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     Search: Search,
     Ticket: Ticket,
     Classify: Classify,
-    Content: Content },
+    Content: Content,
+    Article: Article },
 
   data: function data() {
     return {
