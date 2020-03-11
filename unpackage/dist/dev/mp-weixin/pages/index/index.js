@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Search = function Search() {return Promise.all(/*! import() | pages/index/components/search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/search")]).then(__webpack_require__.bind(null, /*! ./components/search */ 41));};var Ticket = function Ticket() {return Promise.all(/*! import() | pages/index/components/ticket */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/ticket")]).then(__webpack_require__.bind(null, /*! ./components/ticket */ 49));};var Classify = function Classify() {return __webpack_require__.e(/*! import() | pages/index/components/classify */ "pages/index/components/classify").then(__webpack_require__.bind(null, /*! ./components/classify */ 61));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/index/components/content */ "pages/index/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 68));};var Article = function Article() {return __webpack_require__.e(/*! import() | pages/index/components/article */ "pages/index/components/article").then(__webpack_require__.bind(null, /*! ./components/article */ 81));};var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -148,6 +148,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+var _cloudfun = __webpack_require__(/*! ../../common/cloudfun.js */ 89);var Search = function Search() {return Promise.all(/*! import() | pages/index/components/search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/search")]).then(__webpack_require__.bind(null, /*! ./components/search */ 82));};var Ticket = function Ticket() {return Promise.all(/*! import() | pages/index/components/ticket */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/ticket")]).then(__webpack_require__.bind(null, /*! ./components/ticket */ 49));};var Classify = function Classify() {return __webpack_require__.e(/*! import() | pages/index/components/classify */ "pages/index/components/classify").then(__webpack_require__.bind(null, /*! ./components/classify */ 61));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/index/components/content */ "pages/index/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 68));};var Article = function Article() {return __webpack_require__.e(/*! import() | pages/index/components/article */ "pages/index/components/article").then(__webpack_require__.bind(null, /*! ./components/article */ 75));};var _default =
 {
   components: {
     Search: Search,
@@ -161,22 +162,32 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       isFixed: false,
       rect: '',
       menutop: '',
-      banner: [] };
+      banner: [],
+      tab: [],
+      list: [] };
 
   },
   //
   created: function created() {var _this = this;
     //请求轮播数据
-    var db = wx.cloud.database(); //指定要操作的数据库
-    var banner = db.collection('banner'); //指定请求的数据集合
-    banner.get().
+    var banner = 'banner';
+    var tab = 'tab';
+    var lising = 'recomment';
+    //promise.all 可以批量请求多个接口，同时得到多个数据
+    Promise.all([(0, _cloudfun.home)(banner), (0, _cloudfun.home)(tab), (0, _cloudfun.home)(lising)]).
     then(function (res) {
       console.log(res);
-      _this.banner = res.data;
+      //轮播数据
+      _this.banner = res[0].data;
+      //tab数据
+      _this.tab = res[1].data;
+      //推荐数据，第一个tab里的数据
+      _this.list = res[2].data;
     }).
     catch(function (err) {
       console.log(err);
     });
+    //请求tab数据
   },
   //监听页面滚动
   onPageScroll: function onPageScroll(e) {

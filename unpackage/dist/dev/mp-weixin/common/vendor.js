@@ -8579,7 +8579,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "湖工二手购", "usingComponents": { "search": "/pages/index/components/search", "ticket": "/pages/index/components/ticket", "classify": "/pages/index/components/classify", "content": "/pages/index/components/content", "article": "/pages/index/components/article" } }, "pages/strategy/strategy": { "navigationBarTitleText": "分类", "usingComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {} }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "湖工二手购", "navigationBarBackgroundColor": "#FFD300", "backgroundColor": "#FFD300" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "湖工二手购" }, "pages/strategy/strategy": { "navigationBarTitleText": "分类" }, "pages/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/my/my": { "navigationBarTitleText": "我的" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "湖工二手购", "navigationBarBackgroundColor": "#FFD300", "backgroundColor": "#FFD300" } };exports.default = _default;
 
 /***/ }),
 
@@ -8592,6 +8592,32 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "" };exports.default = _default;
+
+/***/ }),
+
+/***/ 89:
+/*!**********************************************************************!*\
+  !*** E:/HBuilderProjects/HBuilderxProjects/eShop/common/cloudfun.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.home = void 0; // promise封装
+var db = wx.cloud.database(); //指定要操作的数据库
+//请求轮播
+var home = function home(banner) {
+  return new Promise(function (resolve, reject) {
+    var banners = db.collection(banner); //指定请求的数据集合
+    banners.get().
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.home = home;
 
 /***/ })
 

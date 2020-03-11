@@ -1,7 +1,7 @@
 <template>
 	<view class="active">
 			<view class="conteng">
-				<block v-for="(item,index) in Articleend" :key="index">
+				<block v-for="(item,index) in list" :key="index">
 				<view class="conteng-article">
 					<view  class="conteng-img">
 					<image :src="item.image" mode="aspectFill"></image>	
@@ -24,33 +24,12 @@
 
 <script>
 	export default{
+		props:{
+			list:Array
+		},
 		data(){
 			return {
-				Articleend:[
-					{
-						"image":"https://img.alicdn.com/bao/uploaded/i4/4064729589/O1CN01Ip6hjD2KhoRtsMmqD_!!4064729589.jpg_400x400.jpg",
-						"title":"DL公关公司",
-						"list":"假数据假数据假数据假数据假数据假数据假数据",
-						"label":"假数据假数据假",
-						"price":80,
-						"buy":90
-					},{
-						"image":"https://img.alicdn.com/bao/uploaded/i4/4064729589/O1CN01Ip6hjD2KhoRtsMmqD_!!4064729589.jpg_400x400.jpg",
-						"title":"DL公关公司",
-						"list":"假数据假数据假数据假数据假数据假数据假数据",
-						"label":"假数据假数据假",
-						"price":80,
-						"buy":90
-					},
-					{
-						"image":"https://img.alicdn.com/bao/uploaded/i4/4064729589/O1CN01Ip6hjD2KhoRtsMmqD_!!4064729589.jpg_400x400.jpg",
-						"title":"DL公关公司",
-						"list":"假数据假数据假数据假数据假数据假数据假数据假数据",
-						"label":"假数据假数据假",
-						"price":80,
-						"buy":90
-					}
-				]
+				
 			}
 		}
 	}
@@ -80,7 +59,7 @@
 		padding-bottom: 10upx;
 	}
 	.conteng-img{
-		height: 400px !important;
+		height: 400upx !important;
 		object-fit: cover;
 		overflow: hidden;
 	}

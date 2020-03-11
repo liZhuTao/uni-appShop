@@ -4,10 +4,10 @@
 			<view v-for="(item,index) in tab" :key="index" class="list-cont" @click="clickTabs(index)">
 				<view :class="{active: index== num}">
 					<view>
-						<text class="con-text-a">{{item.titel}}</text>
+						<text class="con-text-a">{{item.name}}</text>
 					</view>
 					<view>
-						<text class="con-text-b" :class="{activeb: index== num}">{{item.label}}</text>
+						<text class="con-text-b" :class="{activeb: index== num}">{{item.title}}</text>
 					</view>
 				</view>
 			</view>
@@ -18,16 +18,11 @@
 <script>
 	export default{
 		name: "content",
+		props:{
+			tab:Array
+		},
 		data(){
 			return{
-				tab:[
-					{titel:"推荐",label:"猜你喜欢"},
-					{titel:"推荐1",label:"猜你喜欢1"},
-					{titel:"推荐2",label:"猜你喜欢2"},
-					{titel:"推荐3",label:"猜你喜欢3"},
-					{titel:"推荐4",label:"猜你喜欢4"},
-					{titel:"推荐5",label:"猜你喜欢5"}
-				],
 				num: 0
 			}
 		},
