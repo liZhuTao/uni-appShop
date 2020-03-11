@@ -140,14 +140,15 @@ var _cloudfun = __webpack_require__(/*! ../../../common/cloudfun.js */ 21); //
 //
 //
 //
-var _default = { name: "content", props: { tab: Array }, data: function data() {return { num: 0 };}, methods: { clickTabs: function clickTabs(index, nav) {var _this = this;this.num = index;console.log(nav); //点击切换loading状态显示
+var _default = { name: "content", props: { tab: Array }, data: function data() {return { num: 0 };}, methods: { clickTabs: function clickTabs(index, nav) {var _this = this;this.num = index; //点击切换loading状态显示
       var loading = true;this.$store.commit('naumuat', loading); //请求数据库
-      (0, _cloudfun.homeList)(nav).
-      then(function (res) {
-        console.log(res);
+      (0, _cloudfun.homeList)(nav).then(function (res) {
         //vuex传值
         var listdata = res.data;
         _this.$store.commit('listmuta', listdata);
+        //点击切换loading状态显示
+        var loading = false;
+        _this.$store.commit('naumuat', loading);
       }).
       catch(function (err) {
         console.log(err);

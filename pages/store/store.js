@@ -35,7 +35,6 @@ export default new Vuex.Store({
 		},
 		//tab切换的loading状态
 		naumuat(state,loading){
-			console.log(loading)
 			state.navmin = {
 				loading:loading
 			}

@@ -207,13 +207,13 @@ var _vuex = __webpack_require__(/*! vuex */ 91);function _objectSpread(target) {
   //计算属性:时刻监听数据变化，数据发生变化，计算属性重新执行
   computed: _objectSpread({},
 
-  (0, _vuex.mapState)(['alist', navmin]), {
+  (0, _vuex.mapState)(['alist', 'navmin']), {
     //取到tab切换的数据
     count: function count() {
       this.list = this.alist.listing;
     },
     countload: function countload() {
-      this.loading = this.navmin.loading;
+      this.loadinglist = this.navmin.loading;
     },
     //滑动组件置顶
     namepage: function namepage() {

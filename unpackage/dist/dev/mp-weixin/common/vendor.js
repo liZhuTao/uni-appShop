@@ -8680,7 +8680,6 @@ new _vuex.default.Store({
     },
     //tab切换的loading状态
     naumuat: function naumuat(state, loading) {
-      console.log(loading);
       state.navmin = {
         loading: loading };
 

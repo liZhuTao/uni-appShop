@@ -30,17 +30,18 @@
 		methods:{
 			clickTabs(index,nav){
 				this.num = index;
-				console.log(nav)
 				//点击切换loading状态显示
 				let loading = true
 				this.$store.commit('naumuat',loading)
 				//请求数据库
 				homeList(nav)
 				.then((res)=>{
-					console.log(res)
 					//vuex传值
 					let listdata = res.data
 					this.$store.commit('listmuta',listdata)
+					//点击切换loading状态显示
+					let loading = false
+					this.$store.commit('naumuat',loading)
 				})
 				.catch((err)=>{
 					console.log(err)

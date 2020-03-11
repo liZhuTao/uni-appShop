@@ -74,13 +74,13 @@
 		//计算属性:时刻监听数据变化，数据发生变化，计算属性重新执行
 		computed:{
 			//取出vuex数据仓库的数据
-			...mapState(['alist',navmin]),
+			...mapState(['alist','navmin']),
 			//取到tab切换的数据
 			count(){
 				this.list = this.alist.listing
 			},
 			countload(){
-				this.loading = this.navmin.loading
+				this.loadinglist = this.navmin.loading
 			},
 			//滑动组件置顶
 			namepage(){
