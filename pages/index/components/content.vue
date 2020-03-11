@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<scroll-view scroll-x="true" class="scroll" scroll-with-animation="true">
-			<view v-for="(item,index) in tab" :key="index" class="list-cont" @click="clickTabs(index)">
+			<view v-for="(item,index) in tab" :key="index" class="list-cont" @click="clickTabs(index,item.nav)">
 				<view :class="{active: index== num}">
 					<view>
 						<text class="con-text-a">{{item.name}}</text>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+	import {homeList} from '../../../common/cloudfun.js'
 	export default{
 		name: "content",
 		props:{
@@ -27,8 +28,23 @@
 			}
 		},
 		methods:{
-			clickTabs(index){
+			clickTabs(index,nav){
 				this.num = index;
+				console.log(nav)
+				//点击切换loading状态显示
+				let loading = true
+				this.$store.commit('naumuat',loading)
+				//请求数据库
+				homeList(nav)
+				.then((res)=>{
+					console.log(res)
+					//vuex传值
+					let listdata = res.data
+					this.$store.commit('listmuta',listdata)
+				})
+				.catch((err)=>{
+					console.log(err)
+				})
 			}
 		},
 		
