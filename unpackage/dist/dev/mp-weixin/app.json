@@ -45,6 +45,8 @@
     ]
   },
   "usingComponents": {
-    "load-list": "/element/loading"
-  }
+    "load-list": "/element/loading",
+    "none-data": "/element/none"
+  },
+  "sitemapLocation": "sitemap58.json"
 }

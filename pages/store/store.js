@@ -19,16 +19,25 @@ const load = {
 const navmin={
 	loading:'',
 	naving:'recomment',
-	pageid:0
+	pageid:0,
+	uniload:'',
+	nonedata:''
 }
 
+//tab切换没有数据的提示
+const nonemin = {
+	nonedata:''
+}
+
+
+//数据仓库
 const state = {
 	alist,
 	load,
-	navmin
+	navmin,
+	nonemin,
+	
 }
-
-
 
 
 export default new Vuex.Store({
@@ -48,11 +57,21 @@ export default new Vuex.Store({
 		},
 		//以对象传过来的参数
 		navmuta(state,pullobj){
-			console.log(pullobj)
+			// console.log(pullobj)
 			state.navmin = {
 				loading:pullobj.loading,
 				naving:pullobj.nav,
-				pageid:pullobj.pageid
+				pageid:pullobj.pageid,
+				uniload:pullobj.uniload,
+				nonedata:pullobj.nonedata
+			}
+		},
+		
+		//tab切换没有数据的提示
+		nonemuta(state,noneion){
+			console.log(noneion)
+			state.nonemin = {
+				nonedata:noneion
 			}
 		}
 	}

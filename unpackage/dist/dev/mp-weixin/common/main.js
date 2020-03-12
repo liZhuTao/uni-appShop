@@ -21,6 +21,10 @@ _vue.default.prototype.$store = _store.default;
 var loader = function loader() {return __webpack_require__.e(/*! import() | element/loading */ "element/loading").then(__webpack_require__.bind(null, /*! ./element/loading.vue */ 44));};
 _vue.default.component('load-list', loader);
 
+//引入没有数据的提示
+var nonedata = function nonedata() {return Promise.all(/*! import() | element/none */[__webpack_require__.e("common/vendor"), __webpack_require__.e("element/none")]).then(__webpack_require__.bind(null, /*! ./element/none.vue */ 51));};
+_vue.default.component('none-data', nonedata);
+
 _App.default.mpType = 'app';
 
 var app = new _vue.default(_objectSpread({},

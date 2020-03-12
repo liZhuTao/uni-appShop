@@ -1,0 +1,14 @@
+
+.nonedata.data-v-67b606b3{
+	text-align: center;
+}
+.nonedata ._img.data-v-67b606b3{
+	width: 200rpx;
+	height: 200rpx;
+}
+.nonedata text.data-v-67b606b3{
+	display: block;
+	font-size: 30rpx;
+	color: rgb(153,153,153);
+}
+

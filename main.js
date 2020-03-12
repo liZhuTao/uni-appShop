@@ -11,6 +11,10 @@ Vue.prototype.$store = store
 import loader from './element/loading.vue'
 Vue.component('load-list',loader)
 
+//引入没有数据的提示
+import nonedata from './element/none.vue'
+Vue.component('none-data',nonedata)
+
 App.mpType = 'app'
 
 const app = new Vue({

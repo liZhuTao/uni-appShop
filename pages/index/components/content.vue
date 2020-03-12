@@ -34,12 +34,18 @@
 				let loading = true
 				//当tab切换的时候pageid置零
 				let pageid = 0
+				//tab切换把上拉加载组件隐藏
+				let uniload =false
+				//tab切换把没有数据提示的组件隐藏
+				let nonedata = false
 				
 				//对象的形式传值到vuex中
 				let pullobj = {
 					loading:loading,
 					nav:nav,
-					pageid:pageid
+					pageid:pageid,
+					uniload:uniload,
+					nonedata:nonedata
 				}
 				this.$store.commit('navmuta',pullobj)
 				
@@ -49,6 +55,14 @@
 				let listid = 0
 				homeList(nav,listid)
 				.then((res)=>{
+					//tab切换没有数据的情况
+					if(res.data.length == 0){
+						let nonedata = true
+						this.$store.commit('nonemuta',nonedata)
+					}else{
+						let nonedata = false
+						this.$store.commit('nonemuta',nonedata)
+					}
 					//vuex传值
 					let listdata = res.data
 					this.$store.commit('listmuta',listdata)

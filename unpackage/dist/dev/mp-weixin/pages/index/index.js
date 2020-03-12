@@ -151,15 +151,25 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
 var _cloudfun = __webpack_require__(/*! ../../common/cloudfun.js */ 23);
-var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var Search = function Search() {return Promise.all(/*! import() | pages/index/components/search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/search")]).then(__webpack_require__.bind(null, /*! ./components/search */ 51));};var Ticket = function Ticket() {return Promise.all(/*! import() | pages/index/components/ticket */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/ticket")]).then(__webpack_require__.bind(null, /*! ./components/ticket */ 59));};var Classify = function Classify() {return __webpack_require__.e(/*! import() | pages/index/components/classify */ "pages/index/components/classify").then(__webpack_require__.bind(null, /*! ./components/classify */ 71));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/index/components/content */ "pages/index/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 78));};var Article = function Article() {return __webpack_require__.e(/*! import() | pages/index/components/article */ "pages/index/components/article").then(__webpack_require__.bind(null, /*! ./components/article */ 85));};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var Search = function Search() {return Promise.all(/*! import() | pages/index/components/search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/search")]).then(__webpack_require__.bind(null, /*! ./components/search */ 59));};var Ticket = function Ticket() {return Promise.all(/*! import() | pages/index/components/ticket */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/index/components/ticket")]).then(__webpack_require__.bind(null, /*! ./components/ticket */ 67));};var Classify = function Classify() {return __webpack_require__.e(/*! import() | pages/index/components/classify */ "pages/index/components/classify").then(__webpack_require__.bind(null, /*! ./components/classify */ 79));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/index/components/content */ "pages/index/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 86));};var Article = function Article() {return __webpack_require__.e(/*! import() | pages/index/components/article */ "pages/index/components/article").then(__webpack_require__.bind(null, /*! ./components/article */ 93));};var uniLoadMore = function uniLoadMore() {return __webpack_require__.e(/*! import() | components/uni-load-more/uni-load-more */ "components/uni-load-more/uni-load-more").then(__webpack_require__.bind(null, /*! @/components/uni-load-more/uni-load-more.vue */ 100));};
+//导入上拉加载组件
+var _default =
 {
   components: {
     Search: Search,
     Ticket: Ticket,
     Classify: Classify,
     Content: Content,
-    Article: Article },
+    Article: Article,
+    uniLoadMore: uniLoadMore },
 
   data: function data() {
     return {
@@ -171,7 +181,10 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
       list: [],
       loadinglist: false, //loading 的切换状态
       pageid: 0, //上啦加载值
-      nav: '' //tab切换拿到的集合
+      nav: '', //tab切换拿到的集合
+      uniload: 'loading', //上拉加载状态
+      loadmore: false, //隐藏上拉加载
+      nonedata: false //tab切换没有数据的提示
     };
   },
   //
@@ -204,7 +217,13 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
       (0, _cloudfun.homeList)(listing, this.pageid).
       then(function (res) {
         console.log(res);
-        _this2.list = [].concat(_toConsumableArray(_this2.list), _toConsumableArray(res.data));
+        //如果没数据
+        if (res.data.length == 0) {
+          _this2.uniload = 'noMore';
+        } else {
+          //合并数据
+          _this2.list = [].concat(_toConsumableArray(_this2.list), _toConsumableArray(res.data));
+        }
       }).
       catch(function (err) {
         console.log(err);
@@ -226,6 +245,8 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
   // 上拉加载
   onReachBottom: function onReachBottom() {
     // 上拉加载显示上拉加载组件
+    this.loadmore = true;
+    this.uniload = 'loading';
     console.log('触底');
     this.pageid++;
     console.log(this.pageid);
@@ -234,7 +255,7 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
   //计算属性:时刻监听数据变化，数据发生变化，计算属性重新执行
   computed: _objectSpread({},
 
-  (0, _vuex.mapState)(['alist', 'load', 'navmin']), {
+  (0, _vuex.mapState)(['alist', 'load', 'navmin', 'nonemin']), {
     //取到tab切换的数据
     count: function count() {
       this.list = this.alist.listing;
@@ -247,6 +268,8 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
       this.loadinglist = this.navmin.loading;
       this.nav = this.navmin.naving;
       this.pageid = this.navmin.pageid;
+      this.loadmore = this.navmin.uniload;
+      this.nonedata = this.navmin.nonedata;
     },
     //滑动组件置顶
     namepage: function namepage() {
@@ -255,6 +278,10 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
       } else {
         this.isFixed = false;
       }
+    },
+    //tab切换没有数据的情况
+    noneted: function noneted() {
+      this.nonedata = this.nonemin.nonedata;
     } }) };exports.default = _default;
 
 /***/ }),
