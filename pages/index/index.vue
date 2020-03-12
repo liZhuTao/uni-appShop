@@ -7,6 +7,8 @@
 		<view style="height: 140upx;"></view>
 		<load-list v-if="loadinglist"></load-list>
 		<Article :list="list" v-if="!loadinglist"></Article>
+		<!-- 进入页面的loading加载 -->
+		<home-load v-if="homeload"></home-load>
 		<!-- 没有数据的提示 -->
 		<none-data v-if="nonedata"></none-data>
 		<!-- 上拉加载组件 -->
@@ -50,6 +52,7 @@
 				uniload:'loading',      //上拉加载状态
 				loadmore:false,         //隐藏上拉加载
 				nonedata:false,         //tab切换没有数据的提示
+				homeload:true,          //进入首页loading加载
 			}
 		},
 		//
@@ -68,6 +71,8 @@
 				this.tab = res[1].data
 				//推荐数据，第一个tab里的数据
 				this.list = res[2].data
+				//所有数据请求成功消除loading
+				this.homeload = false
 			})
 			.catch((err)=>{
 				console.log(err)

@@ -46,7 +46,7 @@
   },
   "usingComponents": {
     "load-list": "/element/loading",
-    "none-data": "/element/none"
-  },
-  "sitemapLocation": "sitemap58.json"
+    "none-data": "/element/none",
+    "home-load": "/element/homeload"
+  }
 }

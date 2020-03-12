@@ -25,6 +25,12 @@ _vue.default.component('load-list', loader);
 var nonedata = function nonedata() {return Promise.all(/*! import() | element/none */[__webpack_require__.e("common/vendor"), __webpack_require__.e("element/none")]).then(__webpack_require__.bind(null, /*! ./element/none.vue */ 51));};
 _vue.default.component('none-data', nonedata);
 
+//进入页面的loading加载
+var homeload = function homeload() {return __webpack_require__.e(/*! import() | element/homeload */ "element/homeload").then(__webpack_require__.bind(null, /*! ./element/homeload.vue */ 117));};
+_vue.default.component('home-load', homeload);
+
+
+
 _App.default.mpType = 'app';
 
 var app = new _vue.default(_objectSpread({},

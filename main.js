@@ -15,6 +15,12 @@ Vue.component('load-list',loader)
 import nonedata from './element/none.vue'
 Vue.component('none-data',nonedata)
 
+//进入页面的loading加载
+import homeload from './element/homeload.vue'
+Vue.component('home-load',homeload)
+
+
+
 App.mpType = 'app'
 
 const app = new Vue({
