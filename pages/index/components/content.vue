@@ -32,16 +32,29 @@
 				this.num = index;
 				//点击切换loading状态显示
 				let loading = true
-				this.$store.commit('naumuat',loading)
+				//当tab切换的时候pageid置零
+				let pageid = 0
+				
+				//对象的形式传值到vuex中
+				let pullobj = {
+					loading:loading,
+					nav:nav,
+					pageid:pageid
+				}
+				this.$store.commit('navmuta',pullobj)
+				
+				
 				//请求数据库
-				homeList(nav)
+				//上拉加载值
+				let listid = 0
+				homeList(nav,listid)
 				.then((res)=>{
 					//vuex传值
 					let listdata = res.data
 					this.$store.commit('listmuta',listdata)
 					//点击切换loading状态显示
 					let loading = false
-					this.$store.commit('naumuat',loading)
+					this.$store.commit('loadmuat',loading)
 				})
 				.catch((err)=>{
 					console.log(err)

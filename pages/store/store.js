@@ -12,12 +12,19 @@ const alist={
 	listing:[]
 }
 //tab切换状态
-const navmin = {
+const load = {
 	loading:''
+}
+
+const navmin={
+	loading:'',
+	naving:'recomment',
+	pageid:0
 }
 
 const state = {
 	alist,
+	load,
 	navmin
 }
 
@@ -34,9 +41,18 @@ export default new Vuex.Store({
 			}
 		},
 		//tab切换的loading状态
-		naumuat(state,loading){
-			state.navmin = {
+		loadmuat(state,loading){
+			state.load = {
 				loading:loading
+			}
+		},
+		//以对象传过来的参数
+		navmuta(state,pullobj){
+			console.log(pullobj)
+			state.navmin = {
+				loading:pullobj.loading,
+				naving:pullobj.nav,
+				pageid:pullobj.pageid
 			}
 		}
 	}

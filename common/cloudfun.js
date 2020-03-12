@@ -15,9 +15,11 @@ var home = function(banner){
 }
 
 //攻略列表的数据
-var homeList = function(listing){
+var homeList = function(listing,pageid){
 	return new Promise((resolve,reject)=>{
-		const listdata = db.collection(listing).limit(6)   //指定请求的数据集合
+		const listdata = db.collection(listing)   //指定请求的数据集合
+		.limit(6)  		//开始拉取的数据
+		.skip(pageid*6)   //拉取数据的索引
 		listdata.get()
 		.then((res)=>{
 			resolve(res)

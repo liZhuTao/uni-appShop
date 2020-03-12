@@ -35,6 +35,8 @@
 				tab:[],
 				list:[],
 				loadinglist:false,     //loading 的切换状态
+				pageid:0,              //上啦加载值
+				nav:''                 //tab切换拿到的集合
 			}
 		},
 		//
@@ -42,9 +44,9 @@
 			//请求轮播数据
 			let banner = 'banner'
 			let tab = 'tab'
-			let lising = 'recomment'
+			let listing = 'recomment'
 			//promise.all 可以批量请求多个接口，同时得到多个数据
-			Promise.all([home(banner),home(tab),homeList(lising)])
+			Promise.all([home(banner),home(tab),homeList(listing,this.pageid)])
 			.then((res)=>{
 				console.log(res)
 				//轮播数据
@@ -59,6 +61,21 @@
 			})
 			//请求tab数据
 		},
+		//
+		methods:{
+			//上啦加载
+			pullon(){
+				let listing = this.nav
+				homeList(listing,this.pageid)
+				.then((res)=>{
+					console.log(res)
+					this.list = [...this.list,...res.data]
+				})
+				.catch((err)=>{
+					console.log(err)
+				})
+			}
+		},
 		//监听页面滚动
 		onPageScroll(e){
 			this.rect = e.scrollTop
@@ -71,16 +88,30 @@
 				this.menutop = res[0].top
 			})
 		},
+		// 上拉加载
+		onReachBottom(){
+			// 上拉加载显示上拉加载组件
+			console.log('触底')
+			this.pageid++
+			console.log(this.pageid)
+			this.pullon()
+		},
 		//计算属性:时刻监听数据变化，数据发生变化，计算属性重新执行
 		computed:{
 			//取出vuex数据仓库的数据
-			...mapState(['alist','navmin']),
+			...mapState(['alist','load','navmin']),
 			//取到tab切换的数据
 			count(){
 				this.list = this.alist.listing
 			},
 			countload(){
+				this.loadinglist = this.load.loading
+			},
+			//以对象传值
+			navdata(){
 				this.loadinglist = this.navmin.loading
+				this.nav = this.navmin.naving
+				this.pageid = this.navmin.pageid
 			},
 			//滑动组件置顶
 			namepage(){
@@ -91,9 +122,6 @@
 				}
 			}
 		},
-		methods: {
-
-		}
 	}
 </script>
 
