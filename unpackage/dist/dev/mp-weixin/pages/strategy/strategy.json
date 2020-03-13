@@ -1,4 +1,8 @@
 {
-  "navigationBarTitleText": "分类",
-  "usingComponents": {}
+  "navigationBarTitleText": "二手社区",
+  "usingComponents": {
+    "address": "/pages/strategy/components/address",
+    "locality": "/pages/strategy/components/locality",
+    "content": "/pages/strategy/components/content"
+  }
 }

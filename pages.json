@@ -9,7 +9,7 @@
 	    ,{
             "path" : "pages/strategy/strategy",
             "style": {
-            	"navigationBarTitleText": "分类"
+            	"navigationBarTitleText": "二手社区"
             }
         }
         ,{
@@ -45,9 +45,9 @@
 			},
 			{
 				"pagePath":"pages/strategy/strategy",
-				"iconPath":"static/tab/fenlei.png",
-				"selectedIconPath":"static/tab/fenlei1.png",
-				"text":"分类"
+				"iconPath":"static/tab/shequ.png",
+				"selectedIconPath":"static/tab/shequ1.png",
+				"text":"二手社区"
 			},
 			{
 				"pagePath":"pages/cart/cart",

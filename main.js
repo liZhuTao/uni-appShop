@@ -19,6 +19,9 @@ Vue.component('none-data',nonedata)
 import homeload from './element/homeload.vue'
 Vue.component('home-load',homeload)
 
+//引入css3动画插件
+import animate from 'animate.css'
+Vue.use(animate)
 
 
 App.mpType = 'app'
