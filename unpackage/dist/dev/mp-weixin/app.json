@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/city/city",
     "pages/index/index",
     "pages/strategy/strategy",
     "pages/cart/cart",
@@ -18,6 +19,12 @@
     "borderStyle": "black",
     "backgroundColor": "#FFFFFF",
     "list": [
+      {
+        "pagePath": "pages/city/city",
+        "iconPath": "static/tab/shouye.png",
+        "selectedIconPath": "static/tab/shouye1.png",
+        "text": "选择定位"
+      },
       {
         "pagePath": "pages/index/index",
         "iconPath": "static/tab/shouye.png",

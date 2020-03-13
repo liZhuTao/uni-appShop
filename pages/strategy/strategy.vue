@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<Address></Address>
+		<Address :address="address"></Address>
 		<Locality></Locality>
 		<Content></Content>
 		<!-- 发表 -->
@@ -15,6 +15,10 @@
 	import Address from './components/address'
 	import Locality from './components/locality'
 	import Content from './components/content'
+	import {addressdata} from '../../common/list.js'
+	// 引入SDK核心类
+	var QQMapWX = require('../../common/qqmap-wx-jssdk.js');
+	var qqmapsdk;
 	export default {
 		name:'strategy',
 		components:{
@@ -24,11 +28,26 @@
 		},
 		data() {
 			return {
-				
+				address:''
 			}
 		},
-		methods: {
-			
+		methods:{
+			addRess(){
+				addressdata()
+				.then((res)=>{
+					console.log(res)
+					this.address = res.result.address_reference.landmark_l2.title
+					console.log(this.address)
+				})
+				.catch((err)=>{
+					console.log("用户拒绝定位")
+					this.address = '新校区'
+				})
+			}
+		},
+		created() {
+			//定位
+			this.addRess()
 		}
 	}
 </script>

@@ -1,6 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/city/city",
+		    "style" : {
+				"navigationBarTitleText": "选择定位"
+			}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "湖工二手购"
@@ -24,6 +30,7 @@
 				"navigationBarTitleText": "我的"
 			}
         }
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -37,6 +44,12 @@
 		"borderStyle":"black",
 		"backgroundColor":"#FFFFFF",
 		"list":[
+			{
+				"pagePath":"pages/city/city",
+				"iconPath":"static/tab/shouye.png",
+				"selectedIconPath":"static/tab/shouye1.png",
+				"text":"选择定位"
+			},
 			{
 				"pagePath":"pages/index/index",
 				"iconPath":"static/tab/shouye.png",
@@ -61,5 +74,10 @@
 				"text":"我的"
 			}
 		]
+	},
+	"permission": {
+		"scope.userLocation": {
+		"desc": "你的位置信息将用于小程序位置接口的效果展示"
+		}
 	}
 }

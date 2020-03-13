@@ -6,7 +6,7 @@
 			</view>
 			<view class="address-list">
 				<view class="address-text">
-					<text class="words">新校区</text>
+					<text class="words">{{address}}</text>
 					<image src="../../../static/tab/jiantouxia.png" mode="widthFix"></image>
 				</view>
 				<text class="words-eng">hello</text>
@@ -20,6 +20,12 @@
 </template>
 
 <script>
+	export default{
+		name:'add',
+		props:{
+			address:String
+		}
+	}
 </script>
 
 <style scoped>
