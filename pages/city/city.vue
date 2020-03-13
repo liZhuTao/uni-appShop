@@ -5,7 +5,7 @@
 			<view class="search-cont">
 				<view class="city-search">
 					<image src="../../static/tab/sousuo.svg" mode="widthFix" class="search-img"></image>
-					<input type="text" placeholder="发现你感兴趣的目的地" @focus="searchCity" @input="searchInput"/>
+					<input type="text" v-model="inputValue" placeholder="发现你感兴趣的目的地" @focus="searchCity" @input="searchInput"/>
 				</view>
 				<view class="search-code" v-if="!citynone" @click="canCal"><image src="../../static/tab/chaa.svg" mode="widthFix"></image></view>
 			</view>
@@ -32,10 +32,10 @@
 		</view>
 		<!-- 显示搜索的城市 -->
 		<view class="results" v-if="!citynone">
-			<block v-for="(item, index) in citydata1" :key="index">
-				<view class="results-city">
+			<block v-for="(item, index) in citydata" :key="index">
+				<view class="results-city" @click="seekCity(item)">
 					<image src="../../static/tab/gonglveb.png" mode="widthFix"></image>
-					<text>{{ item.name }}</text>
+					<text>{{ item }}</text>
 				</view>
 			</block>
 		</view>
@@ -55,41 +55,31 @@ export default {
 	data() {
 		return {
 			citynone: true,
+			inputValue:'',
 			address: '',
 			citydata: [], //搜索的城市
 			keywoeds: '',
 			pageroute: '', //从哪个页面进来的路由
 			city: [
 				{
-					name: '新校区'
+					name: '湖南工程学院'
 				},
 				{
-					name: '北校区'
+					name: '湖南工程学院-北门'
 				},
 				{
-					name: '滨江校区'
+					name: '滨江学生公寓'
 				},
 				{
-					name: '体育馆'
+					name: '湖南工程学院分院-体育馆'
 				},
 				{
-					name: '南校区'
-				}
+					name: '湖南工程学院(南校区)'
+				},
+				{
+					name: '湖南工程学院北苑红楼'
+				},
 			],
-			citydata1:[
-				{
-					name: '新校区'
-				},
-				{
-					name: '北校区'
-				},
-				{
-					name: '滨江校区'
-				},
-				{
-					name: '体育馆'
-				}
-			]
 		};
 	},
 	methods:{
@@ -101,6 +91,8 @@ export default {
 		//点击取消，关闭搜索
 		canCal(){
 			this.citynone = true
+			this.inputValue = ''
+			this.citydata = ''
 		},
 		//点击定位到城市名称
 		clickCity(){
@@ -110,13 +102,16 @@ export default {
 		},
 		//取到热门景点
 		hotCity(city){
-			// console.log(city)
+			this.backRoutes(city)
+		},
+		//搜索城市
+		seekCity(city){
+			console.log(city)
 			this.backRoutes(city)
 		},
 		
 		//跳转到攻略页面
 		backRoutes(cityion){
-			// console.log(cityion)
 			//vuex传值
 			this.$store.commit('citymuta',cityion)
 			uni.navigateBack({
@@ -125,12 +120,16 @@ export default {
 		},
 		//实时搜索城市
 		searchInput(e){
-			// console.log(e.detail.value)
 			qqmapsdk.getSuggestion({
 				keyword:e.detail.value ,
+				policy:1,
+				// filter:'category=大学',
 				// region:"湘潭市",
 				success:(res)=>{
-					console.log(res)
+					let city = res.data
+					this.citydata = city.map((item)=>{
+						return item.title
+					})
 				},
 				fail:(err)=>{
 					console.log(err)
