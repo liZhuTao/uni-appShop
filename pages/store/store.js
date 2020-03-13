@@ -29,6 +29,11 @@ const nonemin = {
 	nonedata:''
 }
 
+//城市选择页面跳转到攻略页面
+const city = {
+	citying:''
+}
+
 
 //数据仓库
 const state = {
@@ -36,7 +41,7 @@ const state = {
 	load,
 	navmin,
 	nonemin,
-	
+	city,
 }
 
 
@@ -66,12 +71,18 @@ export default new Vuex.Store({
 				nonedata:pullobj.nonedata
 			}
 		},
-		
 		//tab切换没有数据的提示
 		nonemuta(state,noneion){
 			console.log(noneion)
 			state.nonemin = {
 				nonedata:noneion
+			}
+		},
+		//城市选择页面跳转到攻略页面
+		citymuta(state,cityion){
+			console.log(cityion)
+			state.city = {
+				citying:cityion
 			}
 		}
 	}

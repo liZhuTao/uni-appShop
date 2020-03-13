@@ -16,6 +16,8 @@
 	import Locality from './components/locality'
 	import Content from './components/content'
 	import {addressdata} from '../../common/list.js'
+	//取到vuex里面的值
+	import {mapState} from 'vuex'
 	// 引入SDK核心类
 	var QQMapWX = require('../../common/qqmap-wx-jssdk.js');
 	var qqmapsdk;
@@ -28,7 +30,8 @@
 		},
 		data() {
 			return {
-				address:''
+				address:'',
+				addressData:''
 			}
 		},
 		methods:{
@@ -48,6 +51,21 @@
 		created() {
 			//定位
 			this.addRess()
+		},
+		//计算属性
+		computed:{
+			...mapState(['city']),
+			count(){
+				this.addressData = this.city.citying
+			}
+		},
+		
+		//侦听器
+		watch:{
+			addressData(newValue,oldValue){
+				console.log(newValue)
+				this.address = newValue
+			}
 		}
 	}
 </script>

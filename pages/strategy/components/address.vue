@@ -5,7 +5,7 @@
 				<image src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3628832208,3170804138&fm=26&gp=0.jpg" mode="aspectFill"></image>
 			</view>
 			<view class="address-list">
-				<view class="address-text">
+				<view class="address-text" @click="chooseCity()">
 					<text class="words">{{address}}</text>
 					<image src="../../../static/tab/jiantouxia.png" mode="widthFix"></image>
 				</view>
@@ -24,7 +24,17 @@
 		name:'add',
 		props:{
 			address:String
-		}
+		},
+		methods:{
+			//选择城市
+			chooseCity(){
+				uni.navigateTo({
+					url:'../city/city'
+				})
+			}
+		},
+		
+		
 	}
 </script>
 

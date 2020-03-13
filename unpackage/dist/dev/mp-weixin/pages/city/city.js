@@ -168,146 +168,114 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-var _list = __webpack_require__(/*! ../../common/list.js */ 155);function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}
+var _list = __webpack_require__(/*! ../../common/list.js */ 155); //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// 引入定位
 // 引入SDK核心类
-var QQMapWX = __webpack_require__(/*! ../../common/qqmap-wx-jssdk.js */ 33);
-var qqmapsdk = new QQMapWX({
-  key: 'M5IBZ-FPCHS-NM6OI-6CY27-IN2J7-H7FJG' });var _default =
-
-{
-  name: 'citying',
-  data: function data() {
-    return {
-      citynone: true,
-      address: '',
-      citydata: [], //搜索的城市
-      keywoeds: '',
-      pageroute: '', //从哪个页面进来的路由
-      city: [
-      {
-        "name": '昆明市' },
-
-      {
-        "name": '大理白族自治州' },
-
-      {
-        "name": '北京市' },
-
-      {
-        "name": '上海市' },
-
-      {
-        "name": '广州市' },
-
-      {
-        "name": '深圳市' },
-
-      {
-        "name": '杭州市' }] };
-
-
-
-
-  },
-  methods: {
-    // 搜索触发
+var QQMapWX = __webpack_require__(/*! ../../common/qqmap-wx-jssdk.js */ 33);var qqmapsdk = new QQMapWX({ key: 'M5IBZ-FPCHS-NM6OI-6CY27-IN2J7-H7FJG' });var _default = { name: 'citying', data: function data() {return { citynone: true, address: '', citydata: [], //搜索的城市
+      keywoeds: '', pageroute: '', //从哪个页面进来的路由
+      city: [{ name: '新校区' }, { name: '北校区' }, { name: '滨江校区' }, { name: '体育馆' }, { name: '南校区' }], citydata1: [{ name: '新校区' }, { name: '北校区' }, { name: '滨江校区' }, { name: '体育馆' }] };}, methods: {
+    //搜索触发
     searchCity: function searchCity(e) {
-      // console.log(e)
+      console.log(e);
       this.citynone = false;
     },
-    // 点击取消按钮，关闭搜索
-    canCel: function canCel() {
+    //点击取消，关闭搜索
+    canCal: function canCal() {
       this.citynone = true;
-      this.keywoeds = '';
-      this.citydata = '';
     },
-
-    // 点击定位取到城市名称
+    //点击定位到城市名称
     clickCity: function clickCity() {
       // console.log(this.address)
       var cityion = this.address;
-      this.rouTes(cityion);
+      this.backRoutes(cityion);
     },
-
-    // 取到热门城市
+    //取到热门景点
     hotCity: function hotCity(city) {
       // console.log(city)
-      this.rouTes(city);
+      this.backRoutes(city);
     },
 
-    // 搜索城市
-    seekCity: function seekCity(city) {
-      console.log(city);
-      this.rouTes(city);
-    },
-
-    // 跳转到攻略页面
-    rouTes: function rouTes(cityion) {
+    //跳转到攻略页面
+    backRoutes: function backRoutes(cityion) {
       // console.log(cityion)
-      // 用vuex传值
-      if (this.pageroute == 'pages/travels/travels') {
-        console.log(cityion);
-        // 传给发表页面的
-        this.$store.commit('travemuta', cityion);
-      } else {
-        // 传给tabr攻略页面的
-        console.log(cityion);
-        this.$store.commit('citymuta', cityion);
-      }
+      //vuex传值
+      this.$store.commit('citymuta', cityion);
       uni.navigateBack({
         delta: 1 });
 
     },
-
-    // 实时搜索城市
-    searchInput: function searchInput(e) {var _this = this;
+    //实时搜索城市
+    searchInput: function searchInput(e) {
       // console.log(e.detail.value)
       qqmapsdk.getSuggestion({
         keyword: e.detail.value,
+        // region:"湘潭市",
         success: function success(res) {
           console.log(res);
-          var city = res.data;
-          // 取出城市名
-          var thecity = res.data[0].city;
-          var citydata = city.map(function (item) {
-            return item.title;
-          });
-          // 数组合并
-          var allcity = [thecity].concat(_toConsumableArray(citydata));
-          // console.log(allcity)
-          _this.citydata = allcity;
         },
         fail: function fail(err) {
           console.log(err);
         } });
 
     },
-
-    // 定位当前城市
-    addRess: function addRess() {var _this2 = this;
+    //定位当前城市
+    addRess: function addRess() {var _this = this;
       (0, _list.addressdata)().
       then(function (res) {
         console.log(res);
-        _this2.address = res.result.ad_info.city;
+        _this.address = res.result.address_reference.landmark_l2.title;
       }).
       catch(function (err) {
-        console.log('用户拒绝定位');
-        _this2.address = '昆明市';
+        console.log("用户拒绝定位");
+        _this.address = '新校区';
       });
     } },
 
   mounted: function mounted() {
     this.addRess();
-  },
-  // 判断路由
-  onLoad: function onLoad() {
-    var pages = getCurrentPages();
-    var prevpage = pages[pages.length - 2];
-    console.log(prevpage.route);
-    this.pageroute = prevpage.route;
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

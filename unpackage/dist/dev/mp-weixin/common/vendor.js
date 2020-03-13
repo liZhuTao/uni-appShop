@@ -1643,14 +1643,19 @@ var navmin = {
   nonedata: ''
 
 
+  //城市选择页面跳转到攻略页面
+};var city = {
+  citying: ''
+
+
 
   //数据仓库
 };var state = {
   alist: alist,
   load: load,
   navmin: navmin,
-  nonemin: nonemin };var _default =
-
+  nonemin: nonemin,
+  city: city };var _default =
 
 
 
@@ -1680,12 +1685,18 @@ new _vuex.default.Store({
         nonedata: pullobj.nonedata };
 
     },
-
     //tab切换没有数据的提示
     nonemuta: function nonemuta(state, noneion) {
       console.log(noneion);
       state.nonemin = {
         nonedata: noneion };
+
+    },
+    //城市选择页面跳转到攻略页面
+    citymuta: function citymuta(state, cityion) {
+      console.log(cityion);
+      state.city = {
+        citying: cityion };
 
     } } });exports.default = _default;
 

@@ -1,8 +1,14 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-		    "path" : "pages/city/city",
-		    "style" : {
+			"path": "pages/strategy/strategy",
+			"style": {
+				"navigationBarTitleText": "二手社区"
+			}
+		},
+		{
+			"path": "pages/city/city",
+			"style": {
 				"navigationBarTitleText": "选择定位"
 			}
 		},
@@ -11,73 +17,61 @@
 			"style": {
 				"navigationBarTitleText": "湖工二手购"
 			}
-		}
-	    ,{
-            "path" : "pages/strategy/strategy",
-            "style": {
-            	"navigationBarTitleText": "二手社区"
-            }
-        }
-        ,{
-            "path" : "pages/cart/cart",
-            "style": {
-            	"navigationBarTitleText": "购物车"
-            }
-        }
-        ,{
-            "path" : "pages/my/my",
-            "style" : {
+		}, 
+		
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		}, 
+		{
+			"path": "pages/my/my",
+			"style": {
 				"navigationBarTitleText": "我的"
 			}
-        }
-		
-    ],
+		}
+
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "湖工二手购",
 		"navigationBarBackgroundColor": "#FFD300",
 		"backgroundColor": "#FFD300"
 	},
-	"tabBar":{
-		"color":"#333333",
-		"selectedColor":"F76E15",
-		"borderStyle":"black",
-		"backgroundColor":"#FFFFFF",
-		"list":[
-			{
-				"pagePath":"pages/city/city",
-				"iconPath":"static/tab/shouye.png",
-				"selectedIconPath":"static/tab/shouye1.png",
-				"text":"选择定位"
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "F76E15",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tab/shouye.png",
+				"selectedIconPath": "static/tab/shouye1.png",
+				"text": "首页"
 			},
 			{
-				"pagePath":"pages/index/index",
-				"iconPath":"static/tab/shouye.png",
-				"selectedIconPath":"static/tab/shouye1.png",
-				"text":"首页"
+				"pagePath": "pages/strategy/strategy",
+				"iconPath": "static/tab/shequ.png",
+				"selectedIconPath": "static/tab/shequ1.png",
+				"text": "二手社区"
 			},
 			{
-				"pagePath":"pages/strategy/strategy",
-				"iconPath":"static/tab/shequ.png",
-				"selectedIconPath":"static/tab/shequ1.png",
-				"text":"二手社区"
-			},
-			{
-				"pagePath":"pages/cart/cart",
-				"iconPath":"static/tab/gouwuchekong.png",
-				"selectedIconPath":"static/tab/gouwuchekong1.png",
-				"text":"购物车"
-			},{
-				"pagePath":"pages/my/my",
-				"iconPath":"static/tab/personal.png",
-				"selectedIconPath":"static/tab/personal1.png",
-				"text":"我的"
+				"pagePath": "pages/cart/cart",
+				"iconPath": "static/tab/gouwuchekong.png",
+				"selectedIconPath": "static/tab/gouwuchekong1.png",
+				"text": "购物车"
+			}, {
+				"pagePath": "pages/my/my",
+				"iconPath": "static/tab/personal.png",
+				"selectedIconPath": "static/tab/personal1.png",
+				"text": "我的"
 			}
 		]
 	},
 	"permission": {
 		"scope.userLocation": {
-		"desc": "你的位置信息将用于小程序位置接口的效果展示"
+			"desc": "你的位置信息将用于小程序位置接口的效果展示"
 		}
 	}
 }

@@ -139,7 +139,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _list = __webpack_require__(/*! ../../common/list.js */ 155);var Address = function Address() {return __webpack_require__.e(/*! import() | pages/strategy/components/address */ "pages/strategy/components/address").then(__webpack_require__.bind(null, /*! ./components/address */ 118));};var Locality = function Locality() {return __webpack_require__.e(/*! import() | pages/strategy/components/locality */ "pages/strategy/components/locality").then(__webpack_require__.bind(null, /*! ./components/locality */ 125));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/strategy/components/content */ "pages/strategy/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 132));};
+var _list = __webpack_require__(/*! ../../common/list.js */ 155);
+
+var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var Address = function Address() {return __webpack_require__.e(/*! import() | pages/strategy/components/address */ "pages/strategy/components/address").then(__webpack_require__.bind(null, /*! ./components/address */ 118));};var Locality = function Locality() {return __webpack_require__.e(/*! import() | pages/strategy/components/locality */ "pages/strategy/components/locality").then(__webpack_require__.bind(null, /*! ./components/locality */ 125));};var Content = function Content() {return __webpack_require__.e(/*! import() | pages/strategy/components/content */ "pages/strategy/components/content").then(__webpack_require__.bind(null, /*! ./components/content */ 132));};
 // 引入SDK核心类
 var QQMapWX = __webpack_require__(/*! ../../common/qqmap-wx-jssdk.js */ 33);
 var qqmapsdk;var _default =
@@ -152,7 +154,8 @@ var qqmapsdk;var _default =
 
   data: function data() {
     return {
-      address: '' };
+      address: '',
+      addressData: '' };
 
   },
   methods: {
@@ -172,7 +175,21 @@ var qqmapsdk;var _default =
   created: function created() {
     //定位
     this.addRess();
-  } };exports.default = _default;
+  },
+  //计算属性
+  computed: _objectSpread({},
+  (0, _vuex.mapState)(['city']), {
+    count: function count() {
+      this.addressData = this.city.citying;
+    } }),
+
+
+  //侦听器
+  watch: {
+    addressData: function addressData(newValue, oldValue) {
+      console.log(newValue);
+      this.address = newValue;
+    } } };exports.default = _default;
 
 /***/ }),
 
