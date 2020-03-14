@@ -67,50 +67,50 @@
 <script>
 import {preview,addressdata} from '../../common/list.js'
 import {mapState} from 'vuex'
+//引入消息提示插件
+ import HMmessages from "@/components/HM-messages/HM-messages.vue"
 export default {
 	name: 'travels',
+	components: {HMmessages},
 	data() {
 		return {
 			num: 0,
 			fication: [
-					{
-						"name":'全部'
-					},
-					{
-						"name":'书籍资料'
-					},
-					{
-						"name":'食品'
-					},
-					{
-						"name":'生活'
-					},
-					{
-						"name":'手机'
-					},
-					{
-						"name":'电子'
-					},
-					{
-						"name":'彩妆'
-					},
-					{
-						"name":'男装'
-					},
-					{
-						"name":'女装'
-					},
-					{
-						"name":'心情'
-					},
-					{
-						"name":'其他'
-					},
+				{
+					"name":'心情'
+				},
+				{
+					"name":'书籍资料'
+				},
+				{
+					"name":'食品'
+				},
+				{
+					"name":'生活'
+				},
+				{
+					"name":'手机'
+				},
+				{
+					"name":'电子'
+				},
+				{
+					"name":'彩妆'
+				},
+				{
+					"name":'男装'
+				},
+				{
+					"name":'女装'
+				},
+				{
+					"name":'其他'
+				},
 			],
 
 			uploadvideos: false,
 			watchaddress: '',
-			classdata: '景点', //分类
+			classdata: '心情', //分类
 			titledata: '', //标题
 			tipsdata: '', //描述
 			topimg: [], //上传的图片
@@ -126,8 +126,9 @@ export default {
 	},
 	methods:{
 		//点击分类切换
-		menubtn(index){
+		menubtn(index,name){
 			this.num = index
+			this.classdata = name
 		},
 		//上传图片
 		uploadImg(){
@@ -200,6 +201,33 @@ export default {
 		chooseCity(){
 			uni.navigateTo({
 				url:'../city/city'
+			})
+		},
+		//点击获取数据上传
+		suBmitd(){
+			console.log(123456)
+			console.log(this.classdata)
+			console.log(this.titledata)
+			console.log(this.tipsdata)
+			console.log(this.topimg)
+			console.log(this.videos)
+			console.log(this.address)
+			if(this.titledata == ''){
+				this.proMpt('标题必填')
+			}else if(this.tipsdata == ''){
+				this.proMpt('描述必填')
+			}else if(this.topimg.length<3){
+				this.proMpt('上传图片不少于三张')
+			}
+		},
+		
+		//及时反馈
+		proMpt(tip){
+			this.HMmessages.show(tip,{
+				icon:'error',
+				iconColor:'#ffffff',
+				fontColor:'#ffffff',
+				background:'rgba(102,0,21,0.8)'
 			})
 		}
 		

@@ -195,15 +195,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _list = __webpack_require__(/*! ../../common/list.js */ 24);
-var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var _default =
+var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var HMmessages = function HMmessages() {return __webpack_require__.e(/*! import() | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then(__webpack_require__.bind(null, /*! @/components/HM-messages/HM-messages.vue */ 174));};var _default =
+
+
 {
   name: 'travels',
+  components: { HMmessages: HMmessages },
   data: function data() {
     return {
       num: 0,
       fication: [
       {
-        "name": '全部' },
+        "name": '心情' },
 
       {
         "name": '书籍资料' },
@@ -230,16 +233,13 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
         "name": '女装' },
 
       {
-        "name": '心情' },
-
-      {
         "name": '其他' }],
 
 
 
       uploadvideos: false,
       watchaddress: '',
-      classdata: '景点', //分类
+      classdata: '心情', //分类
       titledata: '', //标题
       tipsdata: '', //描述
       topimg: [], //上传的图片
@@ -255,8 +255,9 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
   },
   methods: {
     //点击分类切换
-    menubtn: function menubtn(index) {
+    menubtn: function menubtn(index, name) {
       this.num = index;
+      this.classdata = name;
     },
     //上传图片
     uploadImg: function uploadImg() {var _this = this;
@@ -329,6 +330,33 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
     chooseCity: function chooseCity() {
       uni.navigateTo({
         url: '../city/city' });
+
+    },
+    //点击获取数据上传
+    suBmitd: function suBmitd() {
+      console.log(123456);
+      console.log(this.classdata);
+      console.log(this.titledata);
+      console.log(this.tipsdata);
+      console.log(this.topimg);
+      console.log(this.videos);
+      console.log(this.address);
+      if (this.titledata == '') {
+        this.proMpt('标题必填');
+      } else if (this.tipsdata == '') {
+        this.proMpt('描述必填');
+      } else if (this.topimg.length < 3) {
+        this.proMpt('上传图片不少于三张');
+      }
+    },
+
+    //及时反馈
+    proMpt: function proMpt(tip) {
+      this.HMmessages.show(tip, {
+        icon: 'error',
+        iconColor: '#ffffff',
+        fontColor: '#ffffff',
+        background: 'rgba(102,0,21,0.8)' });
 
     } },
 
