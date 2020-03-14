@@ -1,6 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/travels/travels",
+			"style": {
+				"navigationBarTitleText": "发布页面"
+			}
+		},
+		{
 			"path": "pages/strategy/strategy",
 			"style": {
 				"navigationBarTitleText": "二手社区"
@@ -24,9 +30,14 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
+		}, 
+		{
+			"path": "pages/city/city",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
 		}
-
-	],
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "湖工二手购",

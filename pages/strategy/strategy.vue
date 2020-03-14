@@ -5,7 +5,7 @@
 		<Content></Content>
 		<!-- 发表 -->
 		<view class="publish animated fadeInUp">
-			<image src="../../static/tab/fab.png" mode="widthFix"></image>
+			<image src="../../static/tab/fab.png" mode="widthFix" @click="travels()"></image>
 		</view>
 	</view>
 	
@@ -45,6 +45,12 @@
 				.catch((err)=>{
 					console.log("用户拒绝定位")
 					this.address = '新校区'
+				})
+			},
+			//跳转到发表页面
+			travels(){
+				uni.navigateTo({
+					url:'../travels/travels'
 				})
 			}
 		},

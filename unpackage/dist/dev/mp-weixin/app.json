@@ -1,9 +1,12 @@
 {
   "pages": [
     "pages/strategy/strategy",
+    "pages/travels/travels",
+    
     "pages/index/index",
     "pages/cart/cart",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/city/city"
   ],
   "subPackages": [],
   "window": {
@@ -43,11 +46,6 @@
         "text": "我的"
       }
     ]
-  },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
   },
   "usingComponents": {
     "load-list": "/element/loading",

@@ -34,6 +34,11 @@ const city = {
 	citying:''
 }
 
+//选择城市页面跳转到发表页面
+const travecity = {
+	traveing:''
+}
+
 
 //数据仓库
 const state = {
@@ -42,6 +47,7 @@ const state = {
 	navmin,
 	nonemin,
 	city,
+	travecity,
 }
 
 
@@ -83,6 +89,13 @@ export default new Vuex.Store({
 			console.log(cityion)
 			state.city = {
 				citying:cityion
+			}
+		},
+		//城市选择跳转到发表页面
+		travemuta(state,cityion){
+			console.log(cityion)
+			state.travecity = {
+				traveing:cityion
 			}
 		}
 	}

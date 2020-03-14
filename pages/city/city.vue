@@ -113,7 +113,16 @@ export default {
 		//跳转到攻略页面
 		backRoutes(cityion){
 			//vuex传值
-			this.$store.commit('citymuta',cityion)
+			if(this.pageroute == 'pages/travels/travels'){
+				//传给发表页面
+				console.log(cityion)
+				this.$store.commit('travemuta',cityion)
+			}else{
+				//传给tab攻略页面
+				console.log(cityion)
+				this.$store.commit('citymuta',cityion)
+			}
+			
 			uni.navigateBack({
 				delta:1
 			})
@@ -151,6 +160,13 @@ export default {
 	},
 	mounted() {
 		this.addRess()
+	},
+	//路由判断
+	onLoad() {
+		let pages = getCurrentPages()
+		let prevpage = pages[pages.length - 2];
+		console.log(prevpage.route)
+		this.pageroute = prevpage.route
 	}
 };
 </script>

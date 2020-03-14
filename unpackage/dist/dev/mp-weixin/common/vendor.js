@@ -1714,6 +1714,11 @@ var navmin = {
   citying: ''
 
 
+  //选择城市页面跳转到发表页面
+};var travecity = {
+  traveing: ''
+
+
 
   //数据仓库
 };var state = {
@@ -1721,7 +1726,8 @@ var navmin = {
   load: load,
   navmin: navmin,
   nonemin: nonemin,
-  city: city };var _default =
+  city: city,
+  travecity: travecity };var _default =
 
 
 
@@ -1763,6 +1769,13 @@ new _vuex.default.Store({
       console.log(cityion);
       state.city = {
         citying: cityion };
+
+    },
+    //城市选择跳转到发表页面
+    travemuta: function travemuta(state, cityion) {
+      console.log(cityion);
+      state.travecity = {
+        traveing: cityion };
 
     } } });exports.default = _default;
 
@@ -8701,7 +8714,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.addressdata = void 0; // 引入SDK核心类
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.preview = exports.addressdata = void 0; // 引入SDK核心类
 var QQMapWX = __webpack_require__(/*! ./qqmap-wx-jssdk.js */ 25);
 var qqmapsdk;
 
@@ -8720,7 +8733,27 @@ var addressdata = function addressdata() {
       } });
 
   });
-};exports.addressdata = addressdata;
+};
+
+//公用预览图片
+exports.addressdata = addressdata;var preview = function preview(index, imglist) {
+  return new Promise(function (resolve, reject) {
+    uni.previewImage({
+      current: index,
+      urls: imglist,
+      longPressActions: {
+        itemList: ['发送给朋友', '保存图片', '收藏'] } }).
+
+
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.preview = preview;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -10857,7 +10890,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVMAAAEtCAMAAACC
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/strategy/strategy": { "navigationBarTitleText": "二手社区", "usingComponents": { "address": "/pages/strategy/components/address", "locality": "/pages/strategy/components/locality", "content": "/pages/strategy/components/content" } }, "pages/city/city": { "navigationBarTitleText": "选择定位", "usingComponents": {} }, "pages/index/index": { "navigationBarTitleText": "湖工二手购", "usingComponents": { "search": "/pages/index/components/search", "ticket": "/pages/index/components/ticket", "classify": "/pages/index/components/classify", "content": "/pages/index/components/content", "article": "/pages/index/components/article", "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {} }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "湖工二手购", "navigationBarBackgroundColor": "#FFD300", "backgroundColor": "#FFD300" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/travels/travels": { "navigationBarTitleText": "发布页面", "usingComponents": {} }, "pages/strategy/strategy": { "navigationBarTitleText": "二手社区", "usingComponents": { "address": "/pages/strategy/components/address", "locality": "/pages/strategy/components/locality", "content": "/pages/strategy/components/content" } }, "pages/index/index": { "navigationBarTitleText": "湖工二手购", "usingComponents": { "search": "/pages/index/components/search", "ticket": "/pages/index/components/ticket", "classify": "/pages/index/components/classify", "content": "/pages/index/components/content", "article": "/pages/index/components/article", "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {} }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {} }, "pages/city/city": { "navigationBarTitleText": "我的" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "湖工二手购", "navigationBarBackgroundColor": "#FFD300", "backgroundColor": "#FFD300" } };exports.default = _default;
 
 /***/ }),
 
