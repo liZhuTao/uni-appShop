@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "发布页面",
   "usingComponents": {
-    "h-mmessages": "/components/HM-messages/HM-messages"
+    "h-mmessages": "/components/HM-messages/HM-messages",
+    "motal": "/element/model"
   }
 }

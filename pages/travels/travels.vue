@@ -54,7 +54,7 @@
 		<HMmessages ref="HMmessages" @complete="HMmessages = $refs.HMmessages" @clickMessage="clickMessage"></HMmessages>
 
 		<!-- 登录模态框 -->
-		<motal ref="mon"></motal>
+		<motal ref = "mon"></motal>
 		<!-- 提示用户上传成功与否 -->
 		<view class="warp" v-if="relend">
 			<view class="warp-view tipmin">
@@ -69,9 +69,11 @@ import {preview,addressdata} from '../../common/list.js'
 import {mapState} from 'vuex'
 //引入消息提示插件
  import HMmessages from "@/components/HM-messages/HM-messages.vue"
+ //引入模态框
+ import motal from '../../element/model.vue'
 export default {
 	name: 'travels',
-	components: {HMmessages},
+	components: {HMmessages,motal},
 	data() {
 		return {
 			num: 0,
@@ -218,7 +220,34 @@ export default {
 				this.proMpt('描述必填')
 			}else if(this.topimg.length<3){
 				this.proMpt('上传图片不少于三张')
+			}else{
+				//判断用户是否登录
+				this.userinfo()
 			}
+		},
+		//判断用户是否登录
+		userinfo(){
+			//请求数据库查看用户是否登录
+			var db = wx.cloud.database()
+			var users = db.collection('user')
+			users.get()
+			.then((res)=>{
+				console.log(res)
+				//length==0 用户未登录
+				if(res.data.length == 0){
+					console.log('用户未登录')
+					//弹出模态框
+					this.$nextTick(()=>{    //DOM更新循环结束时的循环回调
+						this.$refs.mon.init()
+					})
+				}else{
+					console.log('用户已登录')
+					
+				}
+			})
+			.catch((err)=>{
+				console.log(err)
+			})
 		},
 		
 		//及时反馈

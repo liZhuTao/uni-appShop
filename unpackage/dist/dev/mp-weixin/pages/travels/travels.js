@@ -195,12 +195,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _list = __webpack_require__(/*! ../../common/list.js */ 24);
-var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var HMmessages = function HMmessages() {return __webpack_require__.e(/*! import() | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then(__webpack_require__.bind(null, /*! @/components/HM-messages/HM-messages.vue */ 174));};var _default =
+var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function _toConsumableArray(arr) {return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();}function _nonIterableSpread() {throw new TypeError("Invalid attempt to spread non-iterable instance");}function _iterableToArray(iter) {if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);}function _arrayWithoutHoles(arr) {if (Array.isArray(arr)) {for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {arr2[i] = arr[i];}return arr2;}}var HMmessages = function HMmessages() {return __webpack_require__.e(/*! import() | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then(__webpack_require__.bind(null, /*! @/components/HM-messages/HM-messages.vue */ 87));};var motal = function motal() {return __webpack_require__.e(/*! import() | element/model */ "element/model").then(__webpack_require__.bind(null, /*! ../../element/model.vue */ 182));};var _default =
+
+
 
 
 {
   name: 'travels',
-  components: { HMmessages: HMmessages },
+  components: { HMmessages: HMmessages, motal: motal },
   data: function data() {
     return {
       num: 0,
@@ -347,7 +349,34 @@ var _vuex = __webpack_require__(/*! vuex */ 16);function _objectSpread(target) {
         this.proMpt('描述必填');
       } else if (this.topimg.length < 3) {
         this.proMpt('上传图片不少于三张');
+      } else {
+        //判断用户是否登录
+        this.userinfo();
       }
+    },
+    //判断用户是否登录
+    userinfo: function userinfo() {var _this4 = this;
+      //请求数据库查看用户是否登录
+      var db = wx.cloud.database();
+      var users = db.collection('user');
+      users.get().
+      then(function (res) {
+        console.log(res);
+        //length==0 用户未登录
+        if (res.data.length == 0) {
+          console.log('用户未登录');
+          //弹出模态框
+          _this4.$nextTick(function () {//DOM更新循环结束时的循环回调
+            _this4.$refs.mon.init();
+          });
+        } else {
+          console.log('用户已登录');
+
+        }
+      }).
+      catch(function (err) {
+        console.log(err);
+      });
     },
 
     //及时反馈

@@ -50,5 +50,6 @@
     "load-list": "/element/loading",
     "none-data": "/element/none",
     "home-load": "/element/homeload"
-  }
+  },
+  "sitemapLocation": "sitemap6.json"
 }
