@@ -23,8 +23,7 @@
 	text-align: center;
 }
 .active.data-v-d949bee0{
-	background: -webkit-gradient(linear,left top, right top,from(#ccffff),to(#ffcc00));
-	background: -o-linear-gradient(left,#ccffff 0%,#ffcc00 100%);
+	background: -webkit-linear-gradient(left,#ccffff 0%,#ffcc00 100%);
 	background: linear-gradient(to right,#ccffff 0%,#ffcc00 100%);
 	border-top-right-radius: 50rpx;
 }

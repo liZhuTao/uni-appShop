@@ -14,19 +14,15 @@
 .menu-block.data-v-a0194b5a {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
-	    -ms-flex-direction: row;
 	        flex-direction: row;
 	-webkit-box-pack: start;
 	-webkit-justify-content: flex-start;
-	    -ms-flex-pack: start;
 	        justify-content: flex-start;
 	-webkit-flex-wrap: wrap;
-	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
 }
 .menu-block view.data-v-a0194b5a {

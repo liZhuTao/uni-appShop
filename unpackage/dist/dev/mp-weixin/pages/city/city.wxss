@@ -12,12 +12,10 @@ page.data-v-15c72a6c {
 	width: 100%;
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
-	    -ms-flex-direction: row;
 	        flex-direction: row;
 	background: #f8f8f8;
 	border-radius: 50rpx;
@@ -37,19 +35,15 @@ page.data-v-15c72a6c {
 .search-cont.data-v-15c72a6c {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
-	    -ms-flex-pack: justify;
 	        justify-content: space-between;
 	height: 70rpx;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
-	background: -webkit-gradient(linear, left bottom, left top, color-stop(10%, #ffe566), to(#ffd300));
-	background: -o-linear-gradient(bottom, #ffe566 10%, #ffd300 100%);
+	background: -webkit-linear-gradient(bottom, #ffe566 10%, #ffd300 100%);
 	background: linear-gradient(to top, #ffe566 10%, #ffd300 100%);
 	padding: 30rpx 20rpx;
 }
@@ -75,22 +69,18 @@ page.data-v-15c72a6c {
 .posit-city.data-v-15c72a6c {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	padding-left: 35rpx;
 }
 .city-view.data-v-15c72a6c {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	background: #f7f7f7;
 	padding: 20rpx 10rpx;
@@ -115,19 +105,15 @@ page.data-v-15c72a6c {
 .menu-block.data-v-15c72a6c {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
-	    -ms-flex-direction: row;
 	        flex-direction: row;
 	-webkit-box-pack: start;
 	-webkit-justify-content: flex-start;
-	    -ms-flex-pack: start;
 	        justify-content: flex-start;
 	-webkit-flex-wrap: wrap;
-	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
 }
 /* 搜索的结果 */
@@ -144,11 +130,9 @@ page.data-v-15c72a6c {
 .results-city.data-v-15c72a6c {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	border-bottom: 1rpx solid #e5e5e5;
 	padding: 20rpx 0;

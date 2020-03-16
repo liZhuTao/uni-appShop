@@ -98,10 +98,8 @@
 .warp-flex.data-v-25dde684 {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-justify-content: space-around;
-	    -ms-flex-pack: distribute;
 	        justify-content: space-around;
 	border-top: 1rpx solid #eeeeee;
 	position: absolute;

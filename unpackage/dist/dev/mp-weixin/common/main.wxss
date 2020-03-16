@@ -102,8 +102,7 @@
   -webkit-animation-name: bounce;
   animation-name: bounce;
   -webkit-transform-origin: center bottom;
-  -ms-transform-origin: center bottom;
-      transform-origin: center bottom;
+  transform-origin: center bottom;
 }
 
 @-webkit-keyframes flash {
@@ -439,8 +438,7 @@
 
 .swing {
   -webkit-transform-origin: top center;
-  -ms-transform-origin: top center;
-      transform-origin: top center;
+  transform-origin: top center;
   -webkit-animation-name: swing;
   animation-name: swing;
 }
@@ -689,8 +687,7 @@
   -webkit-animation-name: jello;
   animation-name: jello;
   -webkit-transform-origin: center;
-  -ms-transform-origin: center;
-      transform-origin: center;
+  transform-origin: center;
 }
 
 @-webkit-keyframes heartBeat {
@@ -3645,8 +3642,7 @@
     -webkit-animation-duration: 1ms !important;
     animation-duration: 1ms !important;
     -webkit-transition-duration: 1ms !important;
-    -o-transition-duration: 1ms !important;
-       transition-duration: 1ms !important;
+    transition-duration: 1ms !important;
     -webkit-animation-iteration-count: 1 !important;
     animation-iteration-count: 1 !important;
   }

@@ -14,7 +14,6 @@
 .classify.data-v-f2510b80 {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 }
 .classify-text.data-v-f2510b80 {
@@ -25,18 +24,14 @@
 .classify-view.data-v-f2510b80 {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: start;
 	-webkit-justify-content: flex-start;
-	    -ms-flex-pack: start;
 	        justify-content: flex-start;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 	-webkit-flex-wrap: wrap;
-	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
 }
 /* 选中的样式 */
@@ -71,10 +66,8 @@
 .conteng.data-v-f2510b80 {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-flex-wrap: wrap;
-	    -ms-flex-wrap: wrap;
 	        flex-wrap: wrap;
 	margin-left: 4px;
 	margin-right: 4px;
@@ -121,11 +114,9 @@
 .address-site.data-v-f2510b80 {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-align: center;
 	-webkit-align-items: center;
-	    -ms-flex-align: center;
 	        align-items: center;
 }
 .address-site image.data-v-f2510b80 {
@@ -145,7 +136,6 @@
 .address.data-v-f2510b80 {
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	background: #f1f1f1;
 	padding: 20rpx 0 20rpx 20rpx;
@@ -195,11 +185,9 @@
 	font-size: 34rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
-	    -ms-flex-pack: center;
 	        justify-content: center;
 	line-height: 200rpx;
 }

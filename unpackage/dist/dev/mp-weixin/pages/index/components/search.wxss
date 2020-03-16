@@ -2,8 +2,7 @@
 .search.data-v-9c66ab3e{
 	background-color: #fff;
 	padding: 30rpx 0;
-	background: -webkit-gradient(linear,left bottom, left top,color-stop(10%, #ffe566),to(#ffd300));
-	background: -o-linear-gradient(bottom,#ffe566 10%,#ffd300);
+	background: -webkit-linear-gradient(bottom,#ffe566 10%,#ffd300);
 	background: linear-gradient(to top,#ffe566 10%,#ffd300);
 }
 .search-input.data-v-9c66ab3e{
@@ -13,13 +12,11 @@
 	margin: 0 50rpx;
 	display: -webkit-box;
 	display: -webkit-flex;
-	display: -ms-flexbox;
 	display: flex;
 	border-radius: 50rpx;
 	-webkit-box-orient: horizontal;
 	-webkit-box-direction: normal;
 	-webkit-flex-direction: row;
-	    -ms-flex-direction: row;
 	        flex-direction: row;
 	background-color: #fff7d4;
 }

@@ -47,6 +47,7 @@
 				<text @click="chooseCity()">{{ address }}</text>
 			</view>
 		</view>
+		
 
 		<!-- 发布 -->
 		<view class="release" @click="suBmitd()">发布</view>
@@ -71,6 +72,12 @@ import {mapState} from 'vuex'
  import HMmessages from "@/components/HM-messages/HM-messages.vue"
  //引入模态框
  import motal from '../../element/model.vue'
+ var util =require('../../common/util.js');
+ var time = util.formatTime(new Date());
+ //定义数据库
+ var db = wx.cloud.database()
+ var users = db.collection('user')
+ 
 export default {
 	name: 'travels',
 	components: {HMmessages,motal},
@@ -228,8 +235,6 @@ export default {
 		//判断用户是否登录
 		userinfo(){
 			//请求数据库查看用户是否登录
-			var db = wx.cloud.database()
-			var users = db.collection('user')
 			users.get()
 			.then((res)=>{
 				console.log(res)
@@ -237,13 +242,118 @@ export default {
 				if(res.data.length == 0){
 					console.log('用户未登录')
 					//弹出模态框
+					let message = '请登录后再操作'
 					this.$nextTick(()=>{    //DOM更新循环结束时的循环回调
-						this.$refs.mon.init()
+						this.$refs.mon.init(message)
 					})
 				}else{
 					console.log('用户已登录')
-					
+					let usermen = res.data[0]
+					this.avatarUrl = usermen.avatarUrl
+					this.nickName = usermen.nickName
+					this.openid = usermen._openid
+					//上传用户提交到数据库
+					this.userdata()
 				}
+			})
+			.catch((err)=>{
+				console.log(err)
+			})
+		},
+		
+		//用户上传数据到数据库：1.上传图片到云存储 2.上传视频到云存储 3.上传所有数据到数据库
+		async userdata(){
+			//先等待图片上传到云存储
+			let staticimg = await this.staticImg()
+			console.log(staticimg)
+			//等待视频上传到云存储
+			let staticvideo = await this.staticVideo()
+			console.log(staticvideo)
+			//把用户填写的数据一并提交到数据库
+			await this.cloudData(staticimg,staticvideo)
+		},
+		
+		//图片上传到云存储
+		staticImg(){
+			//将上传成功的图片放在一个数组中
+			var imgfileID = []
+			return new Promise((resolve,reject)=>{
+				this.topimg.forEach((img)=>{
+					console.log(img)
+					//随机字符串，拼接图片名称，防止同名文件产生，而被后一个文件覆盖
+					let imgion = img.lastIndexOf('.')
+					let eximg = img.slice(imgion)
+					let cloudpath = `${Date.now()}-${Math.floor(Math.random(0,1)*10000000)}${eximg}`
+					console.log(cloudpath)
+					wx.cloud.uploadFile({
+					  cloudPath: 'static/' + cloudpath,
+					  filePath: img, // 文件路径
+					})
+					.then(res => {
+					  // console.log('图片上传完成')
+					  imgfileID.push(res.fileID)
+					  // console.log(imgfileID)
+					  // 判断云存储返回的图片是否和用户上传的图片一样多
+					  if(imgfileID.length == this.topimg.length){
+						  resolve(imgfileID)
+					  }
+					})
+					.catch(error => {
+						console.log(error)
+					})
+				})
+			})
+		},
+		//视频上传到云存储
+		staticVideo(){
+			return new Promise((resolve,reject)=>{
+				//判断用户你是否上传视频
+				if(this.videos == ''){
+					console.log('用户不上传视频')
+					resolve('')
+				}else{
+					console.log('用户要上传')
+					//随机字符串，拼接图片名称，防止同名文件产生，而被后一个文件覆盖
+					let videoion = this.videos.lastIndexOf('.')
+					let exvideo = this.videos.slice(videoion)
+					let cloudpath = `${Date.now()}-${Math.floor(Math.random(0,1)*10000000)}${exvideo}`
+					console.log(cloudpath)
+					wx.cloud.uploadFile({
+					  cloudPath: 'staticVideo/' + cloudpath,
+					  filePath: this.videos, // 文件路径
+					})
+					.then(res => {
+					  // console.log('视频上传完成')
+					  resolve(res.fileID)
+					})
+					.catch(error => {
+						console.log(error)
+					})
+				}
+			})
+		},
+		//把用户填写的数据一并提交到数据库
+		cloudData(staticimg,staticvideo){
+			let datas = {
+				classdata: this.classdata,  //分类
+				titledata: this.titledata,  //标题
+				tipsdata: this.tipsdata,	//描述
+				topimg: staticimg,			//图片
+				videos: staticvideo,		//视频
+				address: this.address,		//定位
+				avatarUrl: this.avatarUrl,	//头像
+				nickName: this.nickName,	//用户昵称
+				openid: this.openid,		//用户标识
+				time:time,					//创建时间
+			}
+			db.collection('userdata').add({
+				//data表示要上传的数据
+				data:{
+					datainfo:datas
+				}
+			})
+			.then((res)=>{
+				console.log(res)
 			})
 			.catch((err)=>{
 				console.log(err)

@@ -52,21 +52,17 @@
 .uni-load-more.data-v-418e1fbe {
   display: -webkit-box;
   display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;
-      -ms-flex-direction: row;
           flex-direction: row;
   height: 40px;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-      -ms-flex-pack: center;
           justify-content: center;
 }
 .uni-load-more__text.data-v-418e1fbe {
@@ -85,7 +81,6 @@
   width: 24px;
   height: 24px;
   -webkit-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
           transform: rotate(0deg);
 }
 .uni-load-more__img--android.data-v-418e1fbe {
@@ -237,22 +232,19 @@
   width: 24px;
   height: 24px;
   -webkit-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
           transform: rotate(0deg);
   -webkit-animation: loading-ios 1s 0s ease infinite;
           animation: loading-ios 1s 0s ease infinite;
 }
 .uni-load-more__img--android-MP > view.data-v-418e1fbe {
   position: absolute;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   border: solid 2px transparent;
   border-top: solid 2px #777777;
   -webkit-transform-origin: center;
-      -ms-transform-origin: center;
           transform-origin: center;
 }
 .uni-load-more__img--android-MP > view.data-v-418e1fbe:nth-child(1) {

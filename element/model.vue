@@ -2,7 +2,7 @@
 	<view>
 		<view class="warp" v-show="modaishow">
 			<view class="warp-view">
-				<view class="warp-text">用户尚未登录</view>
+				<view class="warp-text">{{messages}}</view>
 				<view class="warp-flex">
 					<button plain="true" @click="messcancel()">取消</button>
 					<button plain="true" open-type="getUserInfo" @getuserinfo="getUserInfo">去登录</button>
