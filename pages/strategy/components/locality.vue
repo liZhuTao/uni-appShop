@@ -6,7 +6,7 @@
 			<!-- tab -->
 			<view class="menu-block">
 				<block v-for="(item,index) in citytab" :key="index">
-					<view :class="{activetext:index == num}" @click="menubtn(index)">{{item.name}}</view>
+					<view :class="{activetext:index == num}" @click="menubtn(index,item.name)">{{item.name}}</view>
 				</block>
 					
 			</view>
@@ -59,8 +59,11 @@
 		},
 		
 		methods:{
-			menubtn(index){
+			menubtn(index,name){
+				console.log(name)
 				this.num = index
+				//子组件调用父组件的方法
+				this.$parent.fatherMethod(name)
 			}
 		}
 		

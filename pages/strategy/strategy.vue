@@ -2,12 +2,17 @@
 	<view>
 		<Address :address="address"></Address>
 		<Locality></Locality>
-		<Content :localdata="localdata"></Content>
+		<Content :localdata="localdata" v-if="!loadinglist"></Content>
 		<!-- 发表 -->
 		<view class="publish animated fadeInUp">
 			<image src="../../static/tab/fab.png" mode="widthFix" @click="travels()"></image>
 		</view>
+		<!-- tab切换的loading -->
+		<load-list v-if="loadinglist"></load-list>
+		<!-- 没有数据的提示 -->
+		<none-data v-if="nonedata"></none-data>
 	</view>
+	
 	
 </template>
 
@@ -37,9 +42,29 @@
 				address:'',
 				addressData:'',
 				localdata:[],		//列表数据
+				loadinglist:false,
+				nonedata:false
 			}
 		},
 		methods:{
+			//被子组件调用
+			fatherMethod(name){
+				console.log(name)
+				//点击tabloading显示,没有数据的提示消失
+				this.nonedata = false
+				this.loadinglist = true
+				if(name=="全部"){
+					let city = this.address
+					this.cityData(city)
+				}else{
+					console.log('不是全部')
+					//分类筛选
+					let city = this.address
+					this.tabCity(city,name)
+				}
+			},
+			
+			
 			addRess(){
 				addressdata()
 				.then((res)=>{
@@ -73,6 +98,26 @@
 					console.log(err)
 				})
 			},
+			//tab切换筛选的数据
+			tabCity(city,name){
+				listdata.where({
+					datainfo:{
+						address:city,
+						classdata:name
+					}
+				})
+				.get()
+				.then((res)=>{
+					console.log(res)
+					let citydata = res.data
+					this.resultCity(citydata)
+				})
+				.catch((err)=>{
+					console.log(err)
+				})
+			},
+			
+			
 			//筛选_id,datainfo里的数据合并成数组返回
 			resultCity(citydata){
 				var addData = citydata.map((item)=>{
@@ -80,8 +125,16 @@
 					let datainfo = item.datainfo
 					return {id,datainfo}
 				})
-				console.log(addData)
+				console.log(addData.length)
 				this.localdata = addData
+				//数据显示loading加载隐藏
+				this.loadinglist = false
+				//没有数据给予的提示
+				if(addData.length === 0){
+					this.nonedata = true
+				}else{
+					this.nonedata = false;
+				}
 			},
 			
 			
@@ -112,6 +165,7 @@
 			addressData(newValue,oldValue){
 				console.log(newValue)
 				this.address = newValue
+				this.cityData(newValue)
 			}
 		}
 	}

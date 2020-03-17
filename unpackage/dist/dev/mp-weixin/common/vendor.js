@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1552,7 +1552,7 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 101:
+/***/ 122:
 /*!*************************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/static/tab/sousuo.svg ***!
   \*************************************************************************/
@@ -1563,7 +1563,7 @@ module.exports = __webpack_require__.p + "static/img/sousuo.b192c18e.svg";
 
 /***/ }),
 
-/***/ 111:
+/***/ 132:
 /*!**********************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/static/tab/man.png ***!
   \**********************************************************************/
@@ -1574,7 +1574,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIEAYAAAD9
 
 /***/ }),
 
-/***/ 112:
+/***/ 133:
 /*!************************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/static/tab/weman.png ***!
   \************************************************************************/
@@ -1585,7 +1585,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIEAYAAAD9
 
 /***/ }),
 
-/***/ 113:
+/***/ 134:
 /*!***********************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/static/tab/book.png ***!
   \***********************************************************************/
@@ -1596,7 +1596,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIEAYAAAD9
 
 /***/ }),
 
-/***/ 114:
+/***/ 135:
 /*!***********************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/static/tab/life.png ***!
   \***********************************************************************/
@@ -1607,7 +1607,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIEAYAAAD9
 
 /***/ }),
 
-/***/ 115:
+/***/ 136:
 /*!************************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/static/tab/phone.png ***!
   \************************************************************************/
@@ -8344,7 +8344,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8365,14 +8365,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8448,7 +8448,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8843,79 +8843,6 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 24:
-/*!**********************************************************************!*\
-  !*** E:/HBuilderProjects/HBuilderxProjects/eShop/common/cloudfun.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.homeList = exports.home = void 0; // promise封装
-var db = wx.cloud.database(); //指定要操作的数据库
-//请求轮播
-var home = function home(banner) {
-  return new Promise(function (resolve, reject) {
-    var banners = db.collection(banner); //指定请求的数据集合
-    banners.get().
-    then(function (res) {
-      resolve(res);
-    }).
-    catch(function (err) {
-      reject(err);
-    });
-  });
-};
-
-//攻略列表的数据
-exports.home = home;var homeList = function homeList(listing, pageid) {
-  return new Promise(function (resolve, reject) {
-    var listdata = db.collection(listing) //指定请求的数据集合
-    .limit(6) //开始拉取的数据
-    .skip(pageid * 6); //拉取数据的索引
-    listdata.get().
-    then(function (res) {
-      resolve(res);
-    }).
-    catch(function (err) {
-      reject(err);
-    });
-  });
-};exports.homeList = homeList;
-
-/***/ }),
-
-/***/ 3:
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-
-/***/ 33:
 /*!******************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/common/list.js ***!
   \******************************************************************/
@@ -8924,7 +8851,7 @@ module.exports = g;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.login = exports.preview = exports.addressdata = void 0; // 引入SDK核心类
-var QQMapWX = __webpack_require__(/*! ./qqmap-wx-jssdk.js */ 34);
+var QQMapWX = __webpack_require__(/*! ./qqmap-wx-jssdk.js */ 25);
 var qqmapsdk;
 
 var addressdata = function addressdata() {
@@ -8983,7 +8910,7 @@ exports.preview = preview;var login = function login(user) {
 
 /***/ }),
 
-/***/ 34:
+/***/ 25:
 /*!****************************************************************************!*\
   !*** E:/HBuilderProjects/HBuilderxProjects/eShop/common/qqmap-wx-jssdk.js ***!
   \****************************************************************************/
@@ -10114,6 +10041,79 @@ QQMapWX = /*#__PURE__*/function () {
 ;
 
 module.exports = QQMapWX;
+
+/***/ }),
+
+/***/ 3:
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ 34:
+/*!**********************************************************************!*\
+  !*** E:/HBuilderProjects/HBuilderxProjects/eShop/common/cloudfun.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.homeList = exports.home = void 0; // promise封装
+var db = wx.cloud.database(); //指定要操作的数据库
+//请求轮播
+var home = function home(banner) {
+  return new Promise(function (resolve, reject) {
+    var banners = db.collection(banner); //指定请求的数据集合
+    banners.get().
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};
+
+//攻略列表的数据
+exports.home = home;var homeList = function homeList(listing, pageid) {
+  return new Promise(function (resolve, reject) {
+    var listdata = db.collection(listing) //指定请求的数据集合
+    .limit(6) //开始拉取的数据
+    .skip(pageid * 6); //拉取数据的索引
+    listdata.get().
+    then(function (res) {
+      resolve(res);
+    }).
+    catch(function (err) {
+      reject(err);
+    });
+  });
+};exports.homeList = homeList;
 
 /***/ }),
 
@@ -11856,7 +11856,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "湖工二手购", "usingComponents": { "search": "/pages/index/components/search", "ticket": "/pages/index/components/ticket", "classify": "/pages/index/components/classify", "content": "/pages/index/components/content", "article": "/pages/index/components/article", "uni-load-more": "/components/uni-load-more/uni-load-more" }, "usingAutoImportComponents": { "uni-load-more": "/components/uni-load-more/uni-load-more" } }, "pages/strategy/strategy": { "navigationBarTitleText": "社区", "usingComponents": { "address": "/pages/strategy/components/address", "locality": "/pages/strategy/components/locality", "content": "/pages/strategy/components/content" }, "usingAutoImportComponents": {} }, "pages/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/my/my": { "navigationBarTitleText": "我的", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/travels/travels": { "navigationBarTitleText": "发布页面", "usingComponents": { "h-mmessages": "/components/HM-messages/HM-messages", "motal": "/element/model" }, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择地区", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "湖工二手购", "navigationBarBackgroundColor": "#FFD300", "backgroundColor": "#FFD300" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/strategy/strategy": { "navigationBarTitleText": "社区" }, "pages/index/index": { "navigationBarTitleText": "湖工二手购" }, "pages/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/my/my": { "navigationBarTitleText": "我的" }, "pages/travels/travels": { "navigationBarTitleText": "发布页面" }, "pages/city/city": { "navigationBarTitleText": "选择地区" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "湖工二手购", "navigationBarBackgroundColor": "#FFD300", "backgroundColor": "#FFD300" } };exports.default = _default;
 
 /***/ }),
 
