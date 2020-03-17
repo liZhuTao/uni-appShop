@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/travels/travels",
     "pages/strategy/strategy",
     "pages/index/index",
     "pages/cart/cart",
     "pages/my/my",
+    "pages/travels/travels",
     "pages/city/city"
   ],
   "subPackages": [],
@@ -30,7 +30,7 @@
         "pagePath": "pages/strategy/strategy",
         "iconPath": "static/tab/shequ.png",
         "selectedIconPath": "static/tab/shequ1.png",
-        "text": "二手社区"
+        "text": "社区"
       },
       {
         "pagePath": "pages/cart/cart",
@@ -46,10 +46,14 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "usingComponents": {
     "load-list": "/element/loading",
     "none-data": "/element/none",
     "home-load": "/element/homeload"
-  },
-  "sitemapLocation": "sitemap76.json"
+  }
 }

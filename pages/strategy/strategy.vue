@@ -2,7 +2,7 @@
 	<view>
 		<Address :address="address"></Address>
 		<Locality></Locality>
-		<Content></Content>
+		<Content :localdata="localdata"></Content>
 		<!-- 发表 -->
 		<view class="publish animated fadeInUp">
 			<image src="../../static/tab/fab.png" mode="widthFix" @click="travels()"></image>
@@ -21,6 +21,10 @@
 	// 引入SDK核心类
 	var QQMapWX = require('../../common/qqmap-wx-jssdk.js');
 	var qqmapsdk;
+	//定义操作数据库
+	var db = wx.cloud.database()
+	var listdata = db.collection('userdata')
+	
 	export default {
 		name:'strategy',
 		components:{
@@ -31,7 +35,8 @@
 		data() {
 			return {
 				address:'',
-				addressData:''
+				addressData:'',
+				localdata:[],		//列表数据
 			}
 		},
 		methods:{
@@ -41,12 +46,48 @@
 					console.log(res)
 					this.address = res.result.address_reference.landmark_l2.title
 					console.log(this.address)
+					//定位成功查询数据库，取出对应地区的数据
+					this.cityData(this.address)
 				})
 				.catch((err)=>{
 					console.log("用户拒绝定位")
-					this.address = '新校区'
+					this.address = '湖南工程学院'
+					this.cityData(this.address)
 				})
 			},
+			//定位成功查询数据库，取出对应地区的数据
+			cityData(city){
+				listdata.where({
+					datainfo:{
+						address:city
+					}
+				})
+				.get()
+				.then((res)=>{
+					console.log(res)
+					let citydata = res.data
+					//筛选_id,datainfo里的数据合并成数组返回
+					this.resultCity(citydata)
+				})
+				.catch((err)=>{
+					console.log(err)
+				})
+			},
+			//筛选_id,datainfo里的数据合并成数组返回
+			resultCity(citydata){
+				var addData = citydata.map((item)=>{
+					let id = item._id
+					let datainfo = item.datainfo
+					return {id,datainfo}
+				})
+				console.log(addData)
+				this.localdata = addData
+			},
+			
+			
+			
+			
+			
 			//跳转到发表页面
 			travels(){
 				uni.navigateTo({

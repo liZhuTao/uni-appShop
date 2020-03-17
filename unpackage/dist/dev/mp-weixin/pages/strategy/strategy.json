@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "二手社区",
+  "navigationBarTitleText": "社区",
   "usingComponents": {
     "address": "/pages/strategy/components/address",
     "locality": "/pages/strategy/components/locality",

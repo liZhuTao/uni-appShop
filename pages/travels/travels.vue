@@ -203,7 +203,7 @@ export default {
 			})
 			.catch((err)=>{
 				console.log("用户拒绝定位")
-				this.address = '新校区'
+				this.address = '湖南工程学院'
 			})
 		},
 		//跳转到选择城市页面
@@ -214,13 +214,13 @@ export default {
 		},
 		//点击获取数据上传
 		suBmitd(){
-			console.log(123456)
-			console.log(this.classdata)
-			console.log(this.titledata)
-			console.log(this.tipsdata)
-			console.log(this.topimg)
-			console.log(this.videos)
-			console.log(this.address)
+			// console.log(123456)
+			// console.log(this.classdata)
+			// console.log(this.titledata)
+			// console.log(this.tipsdata)
+			// console.log(this.topimg)
+			// console.log(this.videos)
+			// console.log(this.address)
 			if(this.titledata == ''){
 				this.proMpt('标题必填')
 			}else if(this.tipsdata == ''){
@@ -253,6 +253,7 @@ export default {
 					this.nickName = usermen.nickName
 					this.openid = usermen._openid
 					//上传用户提交到数据库
+					this.relend = true
 					this.userdata()
 				}
 			})
@@ -354,6 +355,11 @@ export default {
 			})
 			.then((res)=>{
 				console.log(res)
+				//提示用户发布成功，跳转到社区页面
+				this.reldata = '发布成功，正在跳转...'
+				setTimeout(uni.switchTab({
+					url:'../strategy/strategy'
+				}),1700)
 			})
 			.catch((err)=>{
 				console.log(err)

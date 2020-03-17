@@ -1,15 +1,9 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/travels/travels",
-			"style": {
-				"navigationBarTitleText": "发布页面"
-			}
-		},
-		{
 			"path": "pages/strategy/strategy",
 			"style": {
-				"navigationBarTitleText": "二手社区"
+				"navigationBarTitleText": "社区"
 			}
 		},
 		{
@@ -32,9 +26,15 @@
 			}
 		}, 
 		{
+			"path": "pages/travels/travels",
+			"style": {
+				"navigationBarTitleText": "发布页面"
+			}
+		},
+		{
 			"path": "pages/city/city",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "选择地区"
 			}
 		}
     ],
@@ -59,7 +59,7 @@
 				"pagePath": "pages/strategy/strategy",
 				"iconPath": "static/tab/shequ.png",
 				"selectedIconPath": "static/tab/shequ1.png",
-				"text": "二手社区"
+				"text": "社区"
 			},
 			{
 				"pagePath": "pages/cart/cart",

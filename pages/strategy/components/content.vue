@@ -1,21 +1,21 @@
 <template>
 	<view class="active">
 			<view class="conteng">
-				<block v-for="(item,index) in Articleend" :key="index">
+				<block v-for="(item,index) in localdata" :key="index">
 				<view class="conteng-article newing" @click="localCont(item.id)">
 					<view  class="conteng-img">
-						
-							<image :src="item.image" mode="aspectFill"></image>	
-						
+						<block v-for="(itemimg,index) in item.datainfo.topimg" :key="index" v-if="index==0">
+							<image :src="itemimg" mode="aspectFill"></image>	
+						</block>
 					</view>
 					<!-- 文字介绍 -->
 					<view class="active-introduce">
-						<view class="active-name">{{item.title}}</view>
-						<view class="active-title">{{item.list}}</view>
+						<view class="active-name">{{item.datainfo.titledata}}</view>
+						<view class="active-title">{{item.datainfo.tipsdata}}</view>
 					</view>	
 						<view class="purchase userinfo">
-							<image :src="item.nameimg" mode="widthFix"></image>
-							<text class="active-purchase">{{item.name}}</text>
+							<image :src="item.datainfo.avatarUrl" mode="widthFix"></image>
+							<text class="active-purchase">{{item.datainfo.nickName}}</text>
 						</view>
 				</view>
 				</block>
@@ -25,31 +25,18 @@
 
 <script>
 	export default{
+		name:'cont',
+		props:{
+			localdata:Array
+		},
 		data(){
 			return {
-				Articleend:[
-					{
-						"image":"cloud://myshop-3iu7o.6d79-myshop-3iu7o-1301521414/list/a (28).jpg",
-						"title":"金色项链",
-						"list":"项链全新，原价60，现价45不讲价",
-						"nameimg":"cloud://myshop-3iu7o.6d79-myshop-3iu7o-1301521414/list/a (28).jpg",
-						"name":"网友一"
-					},
-					{
-						"image":"cloud://myshop-3iu7o.6d79-myshop-3iu7o-1301521414/list/a (28).jpg",
-						"title":"金色项链",
-						"list":"项链全新，原价60，现价45不讲价",
-						"nameimg":"cloud://myshop-3iu7o.6d79-myshop-3iu7o-1301521414/list/a (28).jpg",
-						"name":"网友一"
-					},
-					{
-						"image":"cloud://myshop-3iu7o.6d79-myshop-3iu7o-1301521414/list/a (28).jpg",
-						"title":"金色项链",
-						"list":"项链全新，原价60，现价45不讲价",
-						"nameimg":"cloud://myshop-3iu7o.6d79-myshop-3iu7o-1301521414/list/a (28).jpg",
-						"name":"网友一"
-					}
-				]
+				
+			}
+		},
+		methods:{
+			localCont(id){
+				console.log(id)
 			}
 		}
 	}
