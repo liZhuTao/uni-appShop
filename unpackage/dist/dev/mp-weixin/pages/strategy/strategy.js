@@ -289,9 +289,16 @@ var listdata = db.collection('userdata');var _default =
   },
   //计算属性
   computed: _objectSpread({},
-  (0, _vuex.mapState)(['city']), {
+  (0, _vuex.mapState)(['city', 'roturn']), {
     count: function count() {
       this.addressData = this.city.citying;
+    },
+    // 如果监听到值为true，那么表示用户发表游记成功，然后再次刷新当前页面
+    routing: function routing() {
+      if (this.roturn.pagesid == true) {
+        console.log('再次刷新当前页面');
+        this.addRess();
+      }
     } }),
 
 

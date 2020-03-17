@@ -38,6 +38,10 @@ const city = {
 const travecity = {
 	traveing:''
 }
+//用户发表成功，传值给攻略页面
+const roturn = {
+	pagesid:false
+}
 
 
 //数据仓库
@@ -48,6 +52,7 @@ const state = {
 	nonemin,
 	city,
 	travecity,
+	roturn
 }
 
 
@@ -96,6 +101,12 @@ export default new Vuex.Store({
 			console.log(cityion)
 			state.travecity = {
 				traveing:cityion
+			}
+		},
+		//用户发表成功，传值给攻略页面
+		roturnmuta(state,pagesid){
+			state.roturn = {
+				pagesid:pagesid
 			}
 		}
 	}

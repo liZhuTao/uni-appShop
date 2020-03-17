@@ -1787,6 +1787,10 @@ var navmin = {
 };var travecity = {
   traveing: ''
 
+  //用户发表成功，传值给攻略页面
+};var roturn = {
+  pagesid: false
+
 
 
   //数据仓库
@@ -1796,7 +1800,8 @@ var navmin = {
   navmin: navmin,
   nonemin: nonemin,
   city: city,
-  travecity: travecity };var _default =
+  travecity: travecity,
+  roturn: roturn };var _default =
 
 
 
@@ -1845,6 +1850,12 @@ new _vuex.default.Store({
       console.log(cityion);
       state.travecity = {
         traveing: cityion };
+
+    },
+    //用户发表成功，传值给攻略页面
+    roturnmuta: function roturnmuta(state, pagesid) {
+      state.roturn = {
+        pagesid: pagesid };
 
     } } });exports.default = _default;
 

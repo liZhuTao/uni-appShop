@@ -154,9 +154,16 @@
 		},
 		//计算属性
 		computed:{
-			...mapState(['city']),
+			...mapState(['city','roturn']),
 			count(){
 				this.addressData = this.city.citying
+			},
+			// 如果监听到值为true，那么表示用户发表游记成功，然后再次刷新当前页面
+			routing(){
+				if(this.roturn.pagesid == true){
+					console.log('再次刷新当前页面')
+					this.addRess()
+				}
 			}
 		},
 		

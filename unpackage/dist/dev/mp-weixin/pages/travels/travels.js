@@ -495,11 +495,17 @@ var users = db.collection('user');var _default =
 
       then(function (res) {
         console.log(res);
-        //提示用户发布成功，跳转到社区页面
+        // 提示用户发布成功，跳转到攻略页面
         _this7.reldata = '发布成功，正在跳转...';
-        setTimeout(uni.switchTab({
-          url: '../strategy/strategy' }),
-        1700);
+        // 用户发表景点成功，传值给攻略页面让攻略页面再次请求数据
+        var pagesid = true;
+        setTimeout(function () {
+          uni.switchTab({
+            url: '../strategy/strategy' });
+
+          _this7.$store.commit('roturnmuta', pagesid);
+        }, 1700);
+
       }).
       catch(function (err) {
         console.log(err);
