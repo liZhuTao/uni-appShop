@@ -1,0 +1,254 @@
+/* 详情页面在第一个版本公用，加入支付功能后，B端样式改变，所以抽离出公用的来 */
+/* 轮播 */
+.imageurl {
+	width: 100%;
+	height: 500upx !important;
+}
+
+swiper {
+	height: 500upx !important;
+}
+
+.banner-num {
+	background: #333333;
+	width: 100upx;
+	color: #ffffff;
+	text-align: center;
+	border-radius: 15upx;
+	font-size: 25upx;
+	height: 40upx;
+	line-height: 40upx;
+	position: absolute;
+	right: 20upx;
+	bottom: 20upx;
+}
+
+.banner-posi {
+	position: relative;
+	height: 500upx;
+}
+
+/* 价格 */
+.title-mony {
+	padding-bottom: 20upx;
+	color: #ff5000;
+	font-size: 35upx;
+	font-weight: bold;
+
+}
+
+/* 标题 */
+.cont-back {
+	padding: 20upx;
+	background: #FFFFFF;
+}
+
+.title-con {
+	color: #333333;
+	font-size: 35upx;
+	font-weight: bold;
+	line-height: 1.5;
+	padding-bottom: 30upx;
+}
+
+/* 销量之类 */
+.volume {
+	font-size: 25upx;
+	color: #999999;
+	display: flex;
+	justify-content: space-between;
+}
+
+.volume text {
+	display: block;
+}
+
+
+/* -------------------图片视频介绍 */
+/* 图文视频 */
+.cont-introduce {
+	margin-top: 20upx;
+}
+
+.img-video {
+	color: #333333;
+	font-size: 30upx;
+	font-weight: bold;
+}
+
+.imageText {
+	padding-bottom: 20upx;
+}
+
+.cont-introduce video,
+image {
+	width: 100%;
+}
+
+.cont-introduce video {
+	margin-bottom: 20upx;
+}
+
+/* ---------------------评价 */
+/* 评价 */
+.cont-message {
+	margin-top: 20upx;
+	margin-bottom: 80upx;
+}
+
+.users-message {
+	display: flex;
+	justify-content: space-between;
+	height: 50upx;
+	align-items: center;
+	margin-bottom: 15upx;
+}
+
+.message-time {
+	font-size: 25upx;
+	color: #a8a8a8;
+}
+
+.cont-name image {
+	width: 50upx !important;
+	height: 50upx !important;
+	border-radius: 50%;
+	margin-right: 9upx;
+}
+
+.cont-name text {
+	font-size: 30upx;
+	color: #a8a8a8;
+}
+
+.cont-name {
+	display: flex;
+	align-items: center;
+	height: 50upx;
+}
+
+.cont-name-text text {
+	font-size: 27upx;
+	color: #333333;
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	overflow: hidden;
+}
+
+.message-dist {
+	margin-top: 30upx;
+	border-bottom: 1rpx solid #f8f8f8;
+	padding-bottom: 25upx;
+}
+
+/* 评论按钮 */
+/* 评论按钮 */
+.evaluation {
+	background: #f8f8f8;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 90upx;
+	display: flex;
+	align-items: center;
+}
+
+.evaluation input {
+	font-size: 30upx;
+	color: #9a9a9a;
+	background: #f0f0f0;
+	height: 70upx;
+	width: 100%;
+	border-radius: 50upx;
+	margin: 0 30upx;
+	padding-left: 10upx;
+}
+
+/* 评论框 */
+.Comment-text textarea {
+	width: 100%;
+	color: #808080 !important;
+	font-size: 30upx;
+	padding: 8upx;
+}
+
+.Comment-box {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: #F1F1F1;
+	z-index: 9999;
+}
+
+.Comment-text {
+	background: #FFFFFF;
+	padding-top: 70upx;
+}
+
+.published view {
+	font-size: 35upx;
+	background: #ffdd00;
+	width: 200upx;
+	text-align: center;
+	padding: 10upx 0;
+	border-radius: 10upx;
+}
+
+.published {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 20upx;
+}
+
+/* 分类 */
+.activetext {
+	color: #4CD964;
+	background: #ffdd00 !important;
+	border: 1px solid #ffdd00 !important;
+}
+
+.menu-block view {
+	background: #ffffff;
+	border: 1px solid #c2c5cc;
+	border-radius: 6upx;
+	font-size: 25upx;
+	color: #292c33;
+	font-weight: bold;
+	text-align: center;
+	padding: 15upx;
+	margin: 10upx 15upx 5upx 0;
+}
+
+.menu-block {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	/* margin-bottom: 20upx; */
+}
+
+/* -------------------描点链接 */
+.navs {
+	display: flex;
+	justify-content: center;
+	height: 35px;
+	line-height: 35px;
+	padding: 5upx 0;
+}
+
+.navs text {
+	display: block;
+	font-size: 30upx;
+	width: 100upx;
+	text-align: center;
+	color: #464230;
+}
+
+.navactivetext {
+	border-bottom: 6upx solid #3d3b32;
+}

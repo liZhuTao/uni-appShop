@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/details/details",
     "pages/strategy/strategy",
     "pages/index/index",
     "pages/cart/cart",
@@ -46,15 +47,10 @@
       }
     ]
   },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于小程序位置接口的效果展示"
-    }
-  },
   "usingComponents": {
     "load-list": "/element/loading",
     "none-data": "/element/none",
     "home-load": "/element/homeload"
   },
-  "sitemapLocation": "sitemap37.json"
+  "sitemapLocation": "sitemap16.json"
 }

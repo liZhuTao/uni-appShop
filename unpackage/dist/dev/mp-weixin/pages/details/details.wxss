@@ -1,0 +1,13 @@
+
+page.data-v-2d096392{
+		background: #f8f8f8;
+}
+.scroll-flex.data-v-2d096392{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #ffd00c;
+	z-index: 2;
+}
+

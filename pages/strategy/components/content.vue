@@ -37,6 +37,9 @@
 		methods:{
 			localCont(id){
 				console.log(id)
+				uni.navigateTo({
+					url:'../details/details?id='+id
+				})
 			}
 		}
 	}
