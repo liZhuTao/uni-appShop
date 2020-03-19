@@ -138,7 +138,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 63));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -191,9 +191,12 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 var db = wx.cloud.database();
 var users = db.collection('user');
 //引入登录模态框
-var motal = function motal() {return Promise.all(/*! import() | element/model */[__webpack_require__.e("common/vendor"), __webpack_require__.e("element/model")]).then(__webpack_require__.bind(null, /*! ../../../element/model.vue */ 125));};var HMmessages = function HMmessages() {return __webpack_require__.e(/*! import() | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then(__webpack_require__.bind(null, /*! @/components/HM-messages/HM-messages.vue */ 203));};var _default =
+var motal = function motal() {return Promise.all(/*! import() | element/model */[__webpack_require__.e("common/vendor"), __webpack_require__.e("element/model")]).then(__webpack_require__.bind(null, /*! ../../../element/model.vue */ 125));};var HMmessages = function HMmessages() {return __webpack_require__.e(/*! import() | components/HM-messages/HM-messages */ "components/HM-messages/HM-messages").then(__webpack_require__.bind(null, /*! @/components/HM-messages/HM-messages.vue */ 203));};
 
 
+// 引入当前时间的js
+var util = __webpack_require__(/*! ../../../common/util.js */ 66);
+var time = util.formatTime(new Date());var _default =
 {
   name: 'messages',
   props: {},
@@ -212,8 +215,10 @@ var motal = function motal() {return Promise.all(/*! import() | element/model */
 
       avatarUrl: '', //用户头像
       nickName: '', //用户昵称
-      box: false };
-
+      box: false, //默认不显示评论页
+      leaveword: '', //评论数据
+      Comment: '' //评论信息
+    };
   },
   methods: {
     menubtn: function menubtn(index, item) {
@@ -249,6 +254,88 @@ var motal = function motal() {return Promise.all(/*! import() | element/model */
     //隐藏评论框
     messcancel: function messcancel() {
       this.box = false;
+    },
+    //发表评论
+    bTn: function bTn() {
+      if (this.Comment == '') {
+        console.log('评论为空');
+        var tip = '评论不能为空';
+        var icon = 'error';
+        this.tips(tip, icon);
+      } else {
+        //调用云函数
+        //1.首先提交数据到百度做分析处理，返回标签    2.再提交数据库
+        this.submit();
+      }
+    },
+    //提交数据到数据库
+    submit: function () {var _submit = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var stamess, classif, ali, _ref, prop, adj, _classif;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+
+                  this.aiMessage());case 2:stamess = _context.sent;
+                console.log(stamess);if (!(
+                stamess.length === 0)) {_context.next = 10;break;}
+                //返回为空同样提交数据库
+                classif = '';_context.next = 8;return (
+                  this.messdata(classif));case 8:_context.next = 15;break;case 10:
+
+                //百度标签返回不为空，返回最后一个标签
+                ali = stamess[stamess.length - 1];
+                // es6的数组解构，可以交换变量值
+                _ref = [ali.prop, ali.adj], prop = _ref[0], adj = _ref[1];
+                _classif = prop + adj;_context.next = 15;return (
+                  this.messdata(_classif));case 15:case "end":return _context.stop();}}}, _callee, this);}));function submit() {return _submit.apply(this, arguments);}return submit;}(),
+
+
+    //将数据提交到百度做分析处理
+    aiMessage: function aiMessage() {var _this2 = this;
+      return new Promise(function (resolve, reject) {
+        wx.cloud.callFunction({
+          // 要调用的云函数名称
+          name: 'aimessage',
+          // 传递给云函数的event参数
+          data: {
+            message: _this2.Comment } }).
+
+        then(function (res) {
+          console.log(res);
+          var aidata = res.result.aimessage.items;
+          resolve(aidata);
+        }).catch(function (err) {
+          console.log(err);
+          reject('出错');
+        });
+      });
+    },
+    //将所有数据提交到数据库
+    messdata: function messdata(classif) {var _this3 = this;
+      return new Promise(function (resolve, reject) {
+        //把要提交的数据以对象的形式提交
+        var messArray = {
+          usermess: _this3.Comment, //评论内容
+          time: _this3.time, //评论时间
+          avatarUrl: _this3.avatarUrl, //用户头像
+          nickName: _this3.nickName //用户昵称
+        };
+        var mess = db.collection('message');
+        mess.add({
+          data: {
+            id: '2f7b7efa5e70f1980001e73d3fd03f84',
+            classmessage: classif,
+            messagedata: messArray } }).
+
+
+        then(function (res) {
+          console.log(res);
+        }).
+        catch(function (err) {
+          console.log(err);
+        });
+      });
+    },
+    //及时反馈组件
+    tips: function tips(tip, icon) {
+      console.log('走了');
+      this.HMmessages.show(tip, { icon: icon, iconColor: '#ffffff', fontColor: '#ffffff', background: "rgba(102,0,51,0.8)" });
     } } };exports.default = _default;
 
 /***/ }),

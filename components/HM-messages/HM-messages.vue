@@ -179,7 +179,7 @@
 	.HMmessages .icon.disable:before {content:"\e734";}
 	.HMmessages .icon.help:before {content:"\e73a";}
 	.HMmessages .icon.close:before {content:"\e731";}
-	.HMmessages {width:100%;height:80upx;position:fixed;top:-80upx;left:0;z-index:997;display:flex;justify-content:flex-start;align-items:center;}
+	.HMmessages {width:100%;height:80upx;position:fixed;top:-80upx;left:0;z-index:99999;display:flex;justify-content:flex-start;align-items:center;}
 	.HMmessages.show {animation:show 0.3s linear both;}
 	.HMmessages.hide {animation:hide 0.3s linear both;}
 	@keyframes show {0% {transform:translateY(0);opacity:0;}100% {transform:translateY(80upx);opacity:1;}}

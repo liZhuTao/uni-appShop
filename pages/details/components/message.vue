@@ -54,6 +54,9 @@
 	import motal from '../../../element/model.vue'
 	// 引入即可反馈组件
 	import HMmessages from "@/components/HM-messages/HM-messages.vue"
+	// 引入当前时间的js
+	var util = require('../../../common/util.js');
+	var time = util.formatTime(new Date());
 	export default{
 		name:'messages',
 		props:{
@@ -72,7 +75,9 @@
 				],
 				avatarUrl:'',		//用户头像
 				nickName:'',		//用户昵称
-				box:false
+				box:false,			//默认不显示评论页
+				leaveword:'',		//评论数据
+				Comment:'',			//评论信息
 			}
 		},
 		methods:{
@@ -109,6 +114,88 @@
 			//隐藏评论框
 			messcancel(){
 				this.box = false
+			},
+			//发表评论
+			bTn(){
+				if(this.Comment == ''){
+					console.log('评论为空')
+					let tip = '评论不能为空'
+					let icon = 'error'
+					this.tips(tip,icon)
+				}else{
+					//调用云函数
+					//1.首先提交数据到百度做分析处理，返回标签    2.再提交数据库
+					this.submit()
+				}
+			},
+			//提交数据到数据库
+			async submit(){
+				//首先提交数据到百度做分析处理，返回标签
+				let stamess = await this.aiMessage()
+				console.log(stamess)
+				if(stamess.length === 0){
+					//返回为空同样提交数据库
+					let classif = ''
+					await this.messdata(classif)
+				}else{
+					//百度标签返回不为空，返回最后一个标签
+					let ali = stamess[stamess.length-1]
+					// es6的数组解构，可以交换变量值
+					let [prop,adj] = [ali.prop,ali.adj]
+					let classif = prop + adj
+					await this.messdata(classif)
+				}
+			},
+			//将数据提交到百度做分析处理
+			aiMessage(){
+				return new Promise((resolve,reject)=>{
+					wx.cloud.callFunction({
+					  // 要调用的云函数名称
+					  name: 'aimessage',
+					  // 传递给云函数的event参数
+					  data: {
+					    message:this.Comment
+					  }
+					}).then(res => {
+						console.log(res)
+						let aidata = res.result.aimessage.items
+						resolve(aidata)
+					}).catch(err => {
+						console.log(err)
+						reject('出错')
+					})
+				})
+			},
+			//将所有数据提交到数据库
+			messdata(classif){
+				return new Promise((resolve,reject)=>{
+					//把要提交的数据以对象的形式提交
+					var messArray = {
+						usermess:this.Comment,			//评论内容
+						time:this.time,					//评论时间
+						avatarUrl:this.avatarUrl,		//用户头像
+						nickName:this.nickName,			//用户昵称
+					}
+					var mess = db.collection('message')
+					mess.add({
+						data:{
+							id:'2f7b7efa5e70f1980001e73d3fd03f84',
+							classmessage:classif,
+							messagedata:messArray
+						}
+					})
+					.then(res=>{
+						console.log(res)
+					})
+					.catch(err=>{
+						console.log(err)
+					})
+				})
+			},
+			//及时反馈组件
+			tips(tip,icon){
+				console.log('走了')
+				this.HMmessages.show(tip,{icon:icon,iconColor:'#ffffff',fontColor:'#ffffff', background:"rgba(102,0,51,0.8)"})
 			}
 		},
 	}
