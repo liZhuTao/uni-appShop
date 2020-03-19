@@ -19,7 +19,6 @@
 			:detaid = "detaid"
 			></Message>
 		</view>
-		<view style="height: 1000upx;"></view>
 		<!-- 留言为空的提示 -->
 		<view style="margin-bottom: 90upx;" v-if="nonedata">
 			<none-data></none-data>

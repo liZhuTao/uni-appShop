@@ -1,0 +1,67 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 图文视频 */
+.cont-back.data-v-4424172a {
+	padding: 20rpx;
+	background: #ffffff;
+}
+.cont-introduce.data-v-4424172a {
+	margin-top: 20rpx;
+}
+.img-video.data-v-4424172a {
+	color: #333333;
+	font-size: 30rpx;
+	font-weight: bold;
+	padding: 20rpx 0;
+}
+.cont-introduce video.data-v-4424172a,
+image.data-v-4424172a {
+	width: 100%;
+}
+.cont-introduce video.data-v-4424172a {
+	margin-bottom: 20rpx;
+}
+
