@@ -2,7 +2,7 @@
 	<view>
 		<!-- 搜索框 -->
 		<view class="search">
-			<view class="search-input">
+			<view class="search-input" @click="searchPage()">
 				<img src="../../../static/tab/sousuo.svg" mode="widthFix">
 				<input type="text" placeholder="请输入文字" disabled />
 			</view>
@@ -37,6 +37,13 @@
 				
 			}
 		},
+		methods:{
+			searchPage(){
+				uni.navigateTo({
+					url:'../search/search'
+				})
+			}
+		}
 	}
 </script>
 

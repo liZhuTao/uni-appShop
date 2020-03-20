@@ -154,7 +154,7 @@ export default {
 			})
 			.catch((err)=>{
 				console.log("用户拒绝定位")
-				this.address = '新校区'
+				this.address = '湖南工程学院'
 			})
 		}
 	},

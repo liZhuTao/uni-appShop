@@ -146,7 +146,13 @@
 					return item.messagedata
 				})
 				console.log(leaveword)
-				this.leaveword = leaveword
+				if(leaveword.length === 0){
+					this.nonedata = true
+				}else{
+					this.nonedata = false
+					this.leaveword = leaveword
+				}
+				
 			},
 			//子组件执行父组件方法，请求留言数据
 			fatherMethod(item){
@@ -186,11 +192,10 @@
 		},
 		onLoad(e) {
 			console.log(e)
-			this.detaid = '2f7b7efa5e70f1980001e73d3fd03f84'  //e.id
+			this.detaid = e.id
 			//请求查询数据库有没有这个id,取到图片视频
 			this.detailrep(this.detaid)
 			//请求留言数据
-			this.detaid = '2f7b7efa5e70f1980001e73d3fd03f84'
 			this.messagedata(this.detaid)
 		}
 	}

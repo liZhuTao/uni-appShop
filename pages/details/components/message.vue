@@ -62,7 +62,7 @@
 		props:{
 			leaveword:Array,
 			messageword:Array,
-			// detaid:String
+			detaid:String
 		},
 		components:{
 			motal,
@@ -76,6 +76,7 @@
 				nickName:'',		//用户昵称
 				box:false,			//默认不显示评论页
 				Comment:'',			//评论信息
+				ids:''
 			}
 		},
 		methods:{
@@ -180,7 +181,7 @@
 					var mess = db.collection('message')
 					mess.add({
 						data:{
-							id:'2f7b7efa5e70f1980001e73d3fd03f84',
+							id:this.ids,
 							classmessage:classif,
 							messagedata:messArray
 						}
@@ -215,6 +216,10 @@
 				this.newmessage = newmessage
 				this.num =0
 				console.log(newmessage)
+			},
+			//取到id值
+			detaid(newValue,oldValue){
+				this.ids = newValue
 			}
 		}
 	}

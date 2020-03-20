@@ -47,14 +47,40 @@
 	height: 400rpx;
 	width: 100%;
 }
-/* 机票 */
-.Plane image.data-v-103545b4 {
-	width: 100%;
-	border-radius: 20rpx;
-	height: 150rpx;
+/* 搜索 */
+.search.data-v-103545b4{
+		position: absolute;
+		left: 0rpx;
+		right: 0;
+		bottom: 15rpx;
+		padding: 30rpx 0;
+		z-index: 999;
 }
-.Plane.data-v-103545b4 {
-	margin: 30rpx 20rpx 90rpx 20rpx;
-	height: 150rpx;
+.search-input.data-v-103545b4{
+		height: 70rpx;
+		line-height: 70rpx;
+		width: 650rpx;
+		margin: 0 50rpx;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: flex;
+		border-radius: 50rpx;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: row;
+		        flex-direction: row;
+		background-color: #FFFFFF;
+}
+.search-input ._img.data-v-103545b4{
+		width: 40rpx;
+		height: 40rpx;
+		margin: auto 0 auto 20rpx;
+}
+.search-input input.data-v-103545b4{
+		width: 100%;
+		height: 70rpx;
+		line-height: 70rpx;
+		font-size: 30rpx;
+		color: #666666;
 }
 

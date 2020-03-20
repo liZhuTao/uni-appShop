@@ -1,11 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/details/details",
-			"style": {
-				"navigationBarTitleText": "详情"
-			}
-		},
+		
 		{
 			"path": "pages/strategy/strategy",
 			"style": {
@@ -18,19 +13,24 @@
 				"navigationBarTitleText": "湖工二手购"
 			}
 		}, 
-		
-		{
-			"path": "pages/cart/cart",
-			"style": {
-				"navigationBarTitleText": "购物车"
-			}
-		}, 
 		{
 			"path": "pages/my/my",
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
-		}, 
+		},
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/details/details",
+			"style": {
+				"navigationBarTitleText": "详情"
+			}
+		},
 		{
 			"path": "pages/travels/travels",
 			"style": {
@@ -41,6 +41,12 @@
 			"path": "pages/city/city",
 			"style": {
 				"navigationBarTitleText": "选择地区"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索"
 			}
 		}
     ],
@@ -68,11 +74,6 @@
 				"text": "社区"
 			},
 			{
-				"pagePath": "pages/cart/cart",
-				"iconPath": "static/tab/gouwuchekong.png",
-				"selectedIconPath": "static/tab/gouwuchekong1.png",
-				"text": "购物车"
-			}, {
 				"pagePath": "pages/my/my",
 				"iconPath": "static/tab/personal.png",
 				"selectedIconPath": "static/tab/personal1.png",

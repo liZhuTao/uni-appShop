@@ -36,7 +36,7 @@
 					<text class="active-purchase">{{detaildata.nickName}}</text>
 				</view>
 				<text>评论{{ leaveword.length }}条</text>
-				<text>收藏</text>
+				<text>{{ time }}</text>
 			</view>
 		</view>
 	</view>
@@ -55,6 +55,7 @@ export default {
 			imgArray: [],
 			bannerindex: 0,
 			num: 1,
+			time:''
 		};
 	},
 
@@ -82,6 +83,7 @@ export default {
 		detaildata(newvalue, oldvalue) {
 			// console.log(newvalue.topimg.slice(0,3))
 			this.imgArray = newvalue.topimg.slice(0, 3);
+			this.time = newvalue.time.substr(0,16)
 		}
 	}
 };

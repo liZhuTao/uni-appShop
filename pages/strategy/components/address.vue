@@ -9,13 +9,19 @@
 					<text class="words">{{address}}</text>
 					<image src="../../../static/tab/jiantouxia.png" mode="widthFix"></image>
 				</view>
-				<text class="words-eng">hello</text>
+				<text class="words-eng">welcome</text>
+			</view>
+			<!-- 搜索框 -->
+			<view class="search">
+				<view class="search-input" @click="searchPage()">
+					<img src="../../../static/tab/sousuo.svg" mode="widthFix">
+					<input type="text" placeholder="请输入文字" disabled />
+				</view>
 			</view>
 			<!-- 阴影 -->
 			<view class="back"></view>
 		</view>
-		<!-- 机票 -->
-		<view class="Plane"><image src="../../../static/tab/wuhanjiayou.jpg" mode="widthFix"></image></view>
+		
 	</view>
 </template>
 
@@ -30,6 +36,11 @@
 			chooseCity(){
 				uni.navigateTo({
 					url:'../city/city'
+				})
+			},
+			searchPage(){
+				uni.navigateTo({
+					url:'../search/search'
 				})
 			}
 		},
@@ -83,14 +94,35 @@
 	height: 400upx;
 	width: 100%;
 }
-/* 机票 */
-.Plane image {
-	width: 100%;
-	border-radius: 20upx;
-	height: 150upx;
-}
-.Plane {
-	margin: 30upx 20upx 90upx 20upx;
-	height: 150upx;
-}
+/* 搜索 */
+	.search{
+		position: absolute;
+		left: 0upx;
+		right: 0;
+		bottom: 15upx;
+		padding: 30upx 0;
+		z-index: 999;
+	}
+	.search-input{
+		height: 70upx;
+		line-height: 70upx;
+		width: 650upx;
+		margin: 0 50upx;
+		display: flex;
+		border-radius: 50upx;
+		flex-direction: row;
+		background-color: #FFFFFF;
+	}
+	.search-input img{
+		width: 40upx;
+		height: 40upx;
+		margin: auto 0 auto 20upx;
+	}
+	.search-input input{
+		width: 100%;
+		height: 70upx;
+		line-height: 70upx;
+		font-size: 30upx;
+		color: #666666;
+	}
 </style>

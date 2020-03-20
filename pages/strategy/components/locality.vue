@@ -72,7 +72,7 @@
 
 <style scoped>
 .locality{
-	margin: 0 20upx;
+	margin: 20upx;
 }
 .title{
 	color: #292c33; 
