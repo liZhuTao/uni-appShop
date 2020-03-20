@@ -32,6 +32,8 @@
 				this.num = index
 				if(index === 0){
 					this.backTop()
+				}else{
+					this.$parent.fatherTab(index)
 				}
 				// vuex传值到banner页面
 				// if(index != 0){
@@ -40,9 +42,9 @@
 			},
 			// 宝贝
 			backTop(){
-				if(wx.pageScrollTo){
+				if(uni.pageScrollTo){
 					// console.log(wx.pageScrollTo)
-					wx.pageScrollTo({
+					uni.pageScrollTo({
 						scrollTop:0
 					})
 				}

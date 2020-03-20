@@ -18,7 +18,7 @@
 							<text>{{ item.nickName }}</text>
 						</view>
 						<!-- 时间 -->
-						<view class="message-time">{{ item.time.substr(0, 10) }}</view>
+						<view class="message-time">{{ item.time.substr(0,10) }}</view>
 					</view>
 					<view class="cont-name-text">
 						<text>{{ item.usermess }}</text>
@@ -60,7 +60,9 @@
 	export default{
 		name:'messages',
 		props:{
-			
+			leaveword:Array,
+			messageword:Array,
+			// detaid:String
 		},
 		components:{
 			motal,
@@ -69,20 +71,18 @@
 		data(){
 			return {
 				num: 0,
-				newmessage:[
-					'全部',
-					'物美价廉'
-				],
+				newmessage:[],
 				avatarUrl:'',		//用户头像
 				nickName:'',		//用户昵称
 				box:false,			//默认不显示评论页
-				leaveword:'',		//评论数据
 				Comment:'',			//评论信息
 			}
 		},
 		methods:{
 			menubtn(index,item){
 				this.num = index
+				console.log(item)
+				this.$parent.fatherMethod(item)
 			},
 			
 			//点击评论显示评论框
@@ -114,6 +114,7 @@
 			//隐藏评论框
 			messcancel(){
 				this.box = false
+				this.Comment = ''
 			},
 			//发表评论
 			bTn(){
@@ -172,7 +173,7 @@
 					//把要提交的数据以对象的形式提交
 					var messArray = {
 						usermess:this.Comment,			//评论内容
-						time:this.time,					//评论时间
+						time:time,						//评论时间
 						avatarUrl:this.avatarUrl,		//用户头像
 						nickName:this.nickName,			//用户昵称
 					}
@@ -186,6 +187,15 @@
 					})
 					.then(res=>{
 						console.log(res)
+						//评论成功
+						let tip = '评论成功'
+						let icon = 'success'
+						this.tips(tip,icon)
+						//清空输入框
+						this.Comment = ''
+						//留言成功，实时刷新留言数据，执行父组件的方法
+						let item = '全部'
+						this.$parent.fatherMethod(item)
 					})
 					.catch(err=>{
 						console.log(err)
@@ -198,6 +208,15 @@
 				this.HMmessages.show(tip,{icon:icon,iconColor:'#ffffff',fontColor:'#ffffff', background:"rgba(102,0,51,0.8)"})
 			}
 		},
+		
+		watch:{
+			messageword(newValue,oldValue){
+				let newmessage = ['全部',...newValue]
+				this.newmessage = newmessage
+				this.num =0
+				console.log(newmessage)
+			}
+		}
 	}
 </script>
 

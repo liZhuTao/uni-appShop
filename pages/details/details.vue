@@ -36,7 +36,7 @@
 	// 定义操作数据库
 	var db = wx.cloud.database()
 	var listdata = db.collection('userdata')
-	// var messdatabase = db.collection('message')
+	var messdatabase = db.collection('message')
 	export default{
 		name:'datails',
 		components:{
@@ -91,12 +91,107 @@
 					console.log(err)
 				})
 			},
+			messagedata(id){
+				messdatabase.where({
+					id:id
+				})
+				.orderBy('messagedata.time','desc')
+				.get()
+				.then(res=>{
+					console.log(res)
+					let resdata = res.data
+					//取出ai分类的标签
+					this.classdata(resdata)
+					//取出留言列表
+					this.publicMess(resdata)
+				})
+				.catch(err=>{
+					console.log(err)
+				})
+			},
+			//点击分类筛选数据
+			queryMessage(id,item){
+				messdatabase.where({
+					id:id,
+					classmessage:item
+				})
+				.orderBy('messagedata.time','desc')
+				.get()
+				.then(res=>{
+					console.log(res)
+					let resdata = res.data
+					//取出留言列表
+					this.publicMess(resdata)
+				})
+				.catch(err=>{
+					console.log(err)
+				})
+			},
+			//取出ai分类的标签
+			classdata(resdata){
+				var messageword = resdata.map(item=>{
+					return item.classmessage
+				})
+				//数组去重,ES6 Set()
+				let newarr = Array.from(new Set(messageword))
+				//数组去空,filter过滤
+				let newarr1 = newarr.filter(item=>item)
+				
+				console.log(messageword)
+				this.messageword = newarr1
+			},
+			//取出留言列表
+			publicMess(resdata){
+				var leaveword = resdata.map(item=>{
+					return item.messagedata
+				})
+				console.log(leaveword)
+				this.leaveword = leaveword
+			},
+			//子组件执行父组件方法，请求留言数据
+			fatherMethod(item){
+				console.log(item)
+				if(item == '全部'){
+					this.messagedata(this.detaid)
+				}else{
+					//ai分类筛选
+					this.queryMessage(this.detaid,item)
+				}
+			},
+			//锚点链接跳转
+			fatherTab(index){
+				// console.log(index)
+				if(index == 1){
+					let details = ".matter-page"
+					this.pageScroll(details)
+				}else if(index == 2){
+					let details = ".message-page"
+					this.pageScroll(details)
+				}
+				
+			},
+			//锚点链接跳转
+			pageScroll(details){
+				const query = this.createSelectorQuery()
+				query.select(details).boundingClientRect();
+				query.selectViewport().scrollOffset();
+				query.exec(res=>{
+					console.log(res)
+					uni.pageScrollTo({
+						scrollTop:res[0].top+res[1].scrollTop-35,
+						duration:300
+					})
+				})
+			}
 		},
 		onLoad(e) {
 			console.log(e)
 			this.detaid = '2f7b7efa5e70f1980001e73d3fd03f84'  //e.id
 			//请求查询数据库有没有这个id,取到图片视频
 			this.detailrep(this.detaid)
+			//请求留言数据
+			this.detaid = '2f7b7efa5e70f1980001e73d3fd03f84'
+			this.messagedata(this.detaid)
 		}
 	}
 </script>

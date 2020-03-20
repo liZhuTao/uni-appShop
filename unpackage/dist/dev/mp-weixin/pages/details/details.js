@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Navs = function Navs() {return __webpack_require__.e(/*! import() | pages/details/components/navs */ "pages/details/components/navs").then(__webpack_require__.bind(null, /*! ./components/navs.vue */ 99));};var Banner = function Banner() {return Promise.all(/*! import() | pages/details/components/banner */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/details/components/banner")]).then(__webpack_require__.bind(null, /*! ./components/banner.vue */ 106));};var Matter = function Matter() {return __webpack_require__.e(/*! import() | pages/details/components/matter */ "pages/details/components/matter").then(__webpack_require__.bind(null, /*! ./components/matter.vue */ 113));};var Message = function Message() {return Promise.all(/*! import() | pages/details/components/message */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/details/components/message")]).then(__webpack_require__.bind(null, /*! ./components/message.vue */ 120));};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Navs = function Navs() {return __webpack_require__.e(/*! import() | pages/details/components/navs */ "pages/details/components/navs").then(__webpack_require__.bind(null, /*! ./components/navs.vue */ 99));};var Banner = function Banner() {return Promise.all(/*! import() | pages/details/components/banner */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/details/components/banner")]).then(__webpack_require__.bind(null, /*! ./components/banner.vue */ 106));};var Matter = function Matter() {return __webpack_require__.e(/*! import() | pages/details/components/matter */ "pages/details/components/matter").then(__webpack_require__.bind(null, /*! ./components/matter.vue */ 113));};var Message = function Message() {return Promise.all(/*! import() | pages/details/components/message */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/details/components/message")]).then(__webpack_require__.bind(null, /*! ./components/message.vue */ 120));};
 
 
 
@@ -171,8 +171,8 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 // 定义操作数据库
 var db = wx.cloud.database();
 var listdata = db.collection('userdata');
-// var messdatabase = db.collection('message')
-var _default = {
+var messdatabase = db.collection('message');var _default =
+{
   name: 'datails',
   components: {
     Navs: Navs, Banner: Banner, Matter: Matter, Message: Message },
@@ -225,6 +225,98 @@ var _default = {
       catch(function (err) {
         console.log(err);
       });
+    },
+    messagedata: function messagedata(id) {var _this2 = this;
+      messdatabase.where({
+        id: id }).
+
+      orderBy('messagedata.time', 'desc').
+      get().
+      then(function (res) {
+        console.log(res);
+        var resdata = res.data;
+        //取出ai分类的标签
+        _this2.classdata(resdata);
+        //取出留言列表
+        _this2.publicMess(resdata);
+      }).
+      catch(function (err) {
+        console.log(err);
+      });
+    },
+    //点击分类筛选数据
+    queryMessage: function queryMessage(id, item) {var _this3 = this;
+      messdatabase.where({
+        id: id,
+        classmessage: item }).
+
+      orderBy('messagedata.time', 'desc').
+      get().
+      then(function (res) {
+        console.log(res);
+        var resdata = res.data;
+        //取出留言列表
+        _this3.publicMess(resdata);
+      }).
+      catch(function (err) {
+        console.log(err);
+      });
+    },
+    //取出ai分类的标签
+    classdata: function classdata(resdata) {
+      var messageword = resdata.map(function (item) {
+        return item.classmessage;
+      });
+      //数组去重,ES6 Set()
+      var newarr = Array.from(new Set(messageword));
+      //数组去空,filter过滤
+      var newarr1 = newarr.filter(function (item) {return item;});
+
+      console.log(messageword);
+      this.messageword = newarr1;
+    },
+    //取出留言列表
+    publicMess: function publicMess(resdata) {
+      var leaveword = resdata.map(function (item) {
+        return item.messagedata;
+      });
+      console.log(leaveword);
+      this.leaveword = leaveword;
+    },
+    //子组件执行父组件方法，请求留言数据
+    fatherMethod: function fatherMethod(item) {
+      console.log(item);
+      if (item == '全部') {
+        this.messagedata(this.detaid);
+      } else {
+        //ai分类筛选
+        this.queryMessage(this.detaid, item);
+      }
+    },
+    //锚点链接跳转
+    fatherTab: function fatherTab(index) {
+      // console.log(index)
+      if (index == 1) {
+        var details = ".matter-page";
+        this.pageScroll(details);
+      } else if (index == 2) {
+        var _details = ".message-page";
+        this.pageScroll(_details);
+      }
+
+    },
+    //锚点链接跳转
+    pageScroll: function pageScroll(details) {
+      var query = this.createSelectorQuery();
+      query.select(details).boundingClientRect();
+      query.selectViewport().scrollOffset();
+      query.exec(function (res) {
+        console.log(res);
+        uni.pageScrollTo({
+          scrollTop: res[0].top + res[1].scrollTop - 35,
+          duration: 300 });
+
+      });
     } },
 
   onLoad: function onLoad(e) {
@@ -232,7 +324,11 @@ var _default = {
     this.detaid = '2f7b7efa5e70f1980001e73d3fd03f84'; //e.id
     //请求查询数据库有没有这个id,取到图片视频
     this.detailrep(this.detaid);
+    //请求留言数据
+    this.detaid = '2f7b7efa5e70f1980001e73d3fd03f84';
+    this.messagedata(this.detaid);
   } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
